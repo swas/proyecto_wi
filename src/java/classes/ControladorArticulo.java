@@ -293,7 +293,19 @@ public class ControladorArticulo extends HttpServlet {
 
 
             gotoPage("/index.jsp", request, response);
-        }
+        
+        
+        } else if (request.getParameter("accion").compareTo("puntuar") == 0) {
+
+
+            art = artdao.obtenerArticuloID(Integer.parseInt(request.getParameter("id")));
+            Integer puntuacion = Integer.parseInt(request.getParameter("puntuacion"));
+            //Actualizar BD
+            
+            
+
+            //gotoPage("/DetalleArticulo.jsp", request, response);
+        }        
 
 
 
