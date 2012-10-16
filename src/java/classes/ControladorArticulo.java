@@ -305,7 +305,7 @@ public class ControladorArticulo extends HttpServlet {
             
 
             //gotoPage("/DetalleArticulo.jsp", request, response);
-        }        
+        }
 
 
 
