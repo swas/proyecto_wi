@@ -71,7 +71,19 @@
           </c:choose>
 
       </div>
-          
+          <div class="catalogo_head">
+             <center>
+        <table style="width:550px;">
+      <tr>
+       <th width="160px" class="head">Carátula</th>
+       <th width="180px" class="head">Título</th>
+       <th td width="35px" align="center" class="head">Cantidad</th>
+       <th width="20px" class="head">Precio</th>
+       <th width="20px" class="head" align="center">Eliminar</th>
+      </tr>
+      </table>
+        </center>  
+         </div>
     <div class="catalog">
 
 
@@ -80,13 +92,6 @@
 
       <center>
           <table style="width:550px;">
-              <tr>
-       <th width="160px" class="head">Carátula</th>
-       <th width="180px" class="head">Título</th>
-       <th td width="35px" align="center" class="head">Cantidad</th>
-       <th width="20px" class="head">Precio</th>
-       <th width="20px" class="head" align="center">Eliminar</th>
-      </tr>
       <c:forEach var="entry" items="${cart.elementos}">
        <tr>
        <td width="160px" class="dato" align="center"><img  src="${entry.urlImagen}" /></td>

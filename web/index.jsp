@@ -142,6 +142,19 @@
       
       </div>
         
+         <div class="catalogo_head">
+             <center>
+                 <table style="float: left">
+      <tr>
+       <th width="160px" class="head">Carátula</th>
+       <th width="35px" class="head">Cod. CD</th>
+       <th width="180px" class="head">Título</th>
+       <th width="120px" class="head">Autor</th>
+       <th width="20px" class="head">Precio</th>
+      </tr>
+      </table>
+        </center>  
+         </div>
     <div class="catalogo">
       
           
@@ -157,13 +170,7 @@
           
       </c:when>
       <c:otherwise>     
-       <tr>
-       <th width="160px" class="head">Carátula</th>
-       <th width="35px" class="head">Cod. CD</th>
-       <th width="180px" class="head">Título</th>
-       <th width="120px" class="head">Autor</th>
-       <th width="20px" class="head">Precio</th>
-      </tr>
+          
       <c:forEach var="entry" items="${catalog.elementos}">
        <tr>
        <td width="160px" class="dato" align="center"><img  src="${entry.urlImagen}" /></td>

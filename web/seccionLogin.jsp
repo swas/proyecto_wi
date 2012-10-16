@@ -12,7 +12,7 @@
 
 
 <html>
-    <div class="login" style="float:top;">
+    <div class="login2" style="float:top;">
 
           <c:set var="variable" value="A" />
           <c:set var="var" value="C" />
