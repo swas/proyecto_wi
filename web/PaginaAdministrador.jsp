@@ -37,6 +37,7 @@
 
 	<%@include file="/seccionMenuArticulo.jsp"%>
     
+        <%@include file="/seccionLogin.jsp"%>
         
 <div class="catalog">
    <center><table style="width:550px;">
@@ -65,8 +66,6 @@
                     
         </table>
   </div>
-
-        <%@include file="/seccionLogin.jsp"%>
 </div>
     </body>
 </html>
