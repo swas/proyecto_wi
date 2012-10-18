@@ -36,6 +36,7 @@
 <div class="centro">
 	<%@include file="/seccionMenuArticulo.jsp"%>
       
+   <%@include file="/seccionLogin.jsp"%>
     <div class="catalog">
    <center><table style="width:550px;">
        <tr>
@@ -291,7 +292,6 @@
          
   </div>
 
-   <%@include file="/seccionLogin.jsp"%>
 </div>
     </body>
 </html>
