@@ -22,10 +22,9 @@
 
       <table align="center" border="0">
           <tr valign="middle">
-            <th><img  src="/ProyectoWI/imagenes/dibujoMusica.jpg"></th>
-            <th> <font face="Times New Roman,Times" size="+3">Detalles del CD</font></th>
+            <%@include file="/comun/seccionTitulo.jsp"%>
 	</tr>
-      </table>
+      </table> 
 
       <hr>
 
@@ -34,43 +33,9 @@
 
       <div class="centro">
 
-        <div id="menuv">
-        <ul>
-                <li>Categorias</li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Pop-Rock Español">Pop-Rock Español</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Pop-Rock Internacional">Pop-Rock Internacional</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Clasico">Clásico</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Dance">Dance</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Rap/Hip-Hop">Rap/Hip-Hop</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Chill Out">Chill Out</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Bandas Sonoras">Bandas Sonoras</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Jazz-Blues">Jazz-Blues</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Flamenco y Cancion">Flamenco y Cancion Española</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Musicas del Mundo">Músicas del Mundo</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Regional">Regional</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Infantil">Infantil</a></li>
-
-        </ul>
-        </div>
-
-      <div class="login">
-
-          <c:set var="var" value="C" />
-          <c:choose>
-          <c:when test="${fn:contains(id, var)}">
-
-            <p style="color: white">Bienvenido</p>
-            <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=Micuenta"><button style="width:160;height:24; background-color:#FDF5E6; ">Mi Cuenta</button></a></p>
-            <p><a href="/ProyectoWI/classes/ControladorArticulo?accion=Carrito"><button style="width:160;height:24; background-color:#FDF5E6; ">Carrito</button></a></p>
-            <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=LogOut"><button style="width:160;height:24; background-color:#FDF5E6; ">Salir</button></a></p>
-          </c:when>
-          <c:otherwise>
-              <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=login"><button style="width:160;height:24; background-color:#FDF5E6; ">Login</button></a></p>
-              <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=registro"><button style="width:160;height:24; background-color:#FDF5E6; ">Registrarse</button></a></p>
-          </c:otherwise>
-          </c:choose>
-
-      </div>
+        <%@include file="/comun/seccionMenuPrincipal.jsp"%>
+        
+        <%@include file="/comun/seccionLogin.jsp"%>
 
     <div class="catalog">
         

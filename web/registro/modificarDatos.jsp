@@ -12,17 +12,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="/ProyectoWI/estilo.css" type="text/css"/>
-        <script language="javascript" src="/ProyectoWI/datos1.js"></script>
+        <script language="javascript" src="/ProyectoWI/scripts/datos1.js"></script>
         <title>Datos del Usuario</title>
     </head>
     <body bgcolor="#FDF5E6">
 
-      <table align="center" border="0">
-          <tr valign="middle">
-            <th><img  src="/ProyectoWI/imagenes/dibujoMusica.jpg"></th>
-            <th> <font face="Times New Roman,Times" size="+3">Datos del Usuario</font></th>
+    <center>
+      <table border="0">
+	<tr>            
+            <th valign="bottom"><font margin-left="30px" face="Times New Roman,Times" size="+3">Datos del Usuario</font></th>
 	</tr>
       </table>
+    </center>
       <hr>
 
       <c:set var="user" value="${requestScope['user']}" />

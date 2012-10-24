@@ -18,7 +18,7 @@
           <c:set var="var" value="C" />
           <c:choose>
           <c:when test="${fn:contains(id, variable)}">
-                <p style="color: white">Administrador</p>
+              <p style="color: white">Administrador</p>
               <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=LogOut"><button style="width:160;height:24; background-color:#FDF5E6; ">Salir</button></a></p>
 
 

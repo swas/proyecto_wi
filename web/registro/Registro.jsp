@@ -13,17 +13,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="/ProyectoWI/estilo.css" type="text/css"/>
-        <script language="javascript" src="/ProyectoWI/datos.js"></script>
+        <script language="javascript" src="/ProyectoWI/scripts/datos.js"></script>
         <title>Registro</title>
     </head>
     <body bgcolor="#FDF5E6">
-
-      <table align="center" border="0">
-          <tr valign="middle">
-            <th><img  src="/ProyectoWI/imagenes/dibujoMusica.jpg"></th>
-            <th> <font face="Times New Roman,Times" size="+3">Registro</font></th>
+    <center>
+      <table border="0">
+	<tr>            
+            <th valign="bottom"><font margin-left="30px" face="Times New Roman,Times" size="+2">Registro</font></th>
 	</tr>
       </table>
+    </center>
       <hr>
            <c:if test="${empty param.tipo}">
 	  
@@ -60,8 +60,8 @@
             Repita contraseña*:    <input type=password name="pass1" size="39">
             </p>
             <p><input type="checkbox" name="acepto">
-            Al hacer clic en la casilla, aceptas los t&eacute;rminos de uso de la Tienda,
-            las condiciones del servicio de Tienda y la pol&iacute;tica de privacidad.
+            Al hacer clic en la casilla, aceptas los t&eacute;rminos de uso y las condiciones de la Tienda,
+            as&iacute; como la pol&iacute;tica de privacidad.
             </p>
             
             </div>

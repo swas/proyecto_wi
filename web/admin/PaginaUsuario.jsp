@@ -20,21 +20,15 @@
       <jsp:useBean id="id" class="java.lang.String" scope="session"/>
       <jsp:useBean id="usuarios" class="classes.vo.busquedaUsuarioVO" scope="session"/>
       
-      
-      
+<%@include file="/comun/seccionTitulo.jsp"%>
 
-
-
-
-<%@include file="/seccionTitulo.jsp"%>
-
-<%@include file="/seccionBuscadorUsuario.jsp"%>
+<%@include file="/admin/seccionBuscadorUsuario.jsp"%>
 
 <hr>
                   
 <div class="centro">
-	<%@include file="/seccionMenuUsuarios.jsp"%>
-        <%@include file="/seccionLogin.jsp"%>
+	<%@include file="/admin/seccionMenuUsuarios.jsp"%>
+        <%@include file="/comun/seccionLogin.jsp"%>
 
 
 

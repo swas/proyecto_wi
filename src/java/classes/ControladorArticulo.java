@@ -66,7 +66,7 @@ public class ControladorArticulo extends HttpServlet {
 
         } else if (request.getParameter("accion").compareTo("Carrito") == 0) {
 
-            gotoPage("/carrito.jsp", request, response);
+            gotoPage("/compra/carrito.jsp", request, response);
 
         } else if (request.getParameter("accion").compareTo("EliminarElemento") == 0) {
 
@@ -90,7 +90,7 @@ public class ControladorArticulo extends HttpServlet {
 
 
 
-            gotoPage("/carrito.jsp", request, response);
+            gotoPage("/compra/carrito.jsp", request, response);
 
         } else if (request.getParameter("accion").compareTo("Select") == 0) {
 
@@ -103,7 +103,7 @@ public class ControladorArticulo extends HttpServlet {
             request.setAttribute("articulo", art);
             request.setAttribute("come", a);
 
-            gotoPage("/detallesCD.jsp", request, response);
+            gotoPage("/cd/detallesCD.jsp", request, response);
 
         } else if (request.getParameter("accion").compareTo("Comprar") == 0) {
 
@@ -127,7 +127,7 @@ public class ControladorArticulo extends HttpServlet {
                 request.setAttribute("articulo", art);
                 request.setAttribute("come", a);
 
-                gotoPage("/detallesCD.jsp", request, response);
+                gotoPage("/cd/detallesCD.jsp", request, response);
 
             } else {
 
@@ -137,7 +137,7 @@ public class ControladorArticulo extends HttpServlet {
 
                 session.setAttribute("cart", carro);
 
-                gotoPage("/carrito.jsp", request, response);
+                gotoPage("/compra/carrito.jsp", request, response);
             }
         } else if (request.getParameter("accion").compareTo("Pago") == 0) {
 
@@ -179,7 +179,7 @@ public class ControladorArticulo extends HttpServlet {
             request.setAttribute("articulo", art);
             request.setAttribute("come", a);
 
-            gotoPage("/detallesCD.jsp", request, response);
+            gotoPage("/cd/detallesCD.jsp", request, response);
 
         } else if (request.getParameter("accion").compareTo("Destacados") == 0) {
 
@@ -198,9 +198,9 @@ public class ControladorArticulo extends HttpServlet {
             artvo = artdao.buscarCDPorCategoria(request.getParameter("categoria"));
             session.setAttribute("catalogo", artvo);
 
-            gotoPage("/PaginaAdministrador.jsp", request, response);
+            gotoPage("/admin/PaginaAdministrador.jsp", request, response);
 
-        } else if (request.getParameter("accion").compareTo("busquedaAvanzada") == 0) {
+        } else if (request.getParameter("accion").compareTo("busquedaAvanzada2") == 0) {
             this.tituloBUS = request.getParameter("tituloBUS");
             this.autorBUS = request.getParameter("autorBUS");
             this.precioBUS = request.getParameter("precioBUS");
@@ -214,7 +214,7 @@ public class ControladorArticulo extends HttpServlet {
             busquedaArticuloVO catalogo = artDAO.dameArticulos(request, response);
             session.setAttribute("catalogo", catalogo);
 
-            gotoPage("/PaginaAdministrador.jsp", request, response);
+            gotoPage("/admin/PaginaAdministrador.jsp", request, response);
         } else if (request.getParameter("accion").compareTo("DetalleArticulo") == 0) {
 
 
@@ -223,7 +223,7 @@ public class ControladorArticulo extends HttpServlet {
             art = artdao.obtenerArticuloID(Integer.parseInt(request.getParameter("id")));
             session.setAttribute("articulo", art);
 
-            gotoPage("/DetalleArticulo.jsp", request, response);
+            gotoPage("/admin/DetalleArticulo.jsp", request, response);
 
         } else if (request.getParameter("accion").compareTo("GuardarDatosArticulo") == 0) {
 
@@ -238,7 +238,7 @@ public class ControladorArticulo extends HttpServlet {
 
             artdao.ModificarArticulo(request, response);
             session.setAttribute("articulo", "nada");
-            gotoPage("/PaginaAdministrador.jsp", request, response);
+            gotoPage("/admin/PaginaAdministrador.jsp", request, response);
 
         } else if (request.getParameter("accion").compareTo("AnhadirArticulo") == 0) {
 
@@ -246,14 +246,21 @@ public class ControladorArticulo extends HttpServlet {
 
             art.setAutor("Nuevo");
             session.setAttribute("articulo", art);
-            gotoPage("/DetalleArticulo.jsp", request, response);
+            gotoPage("/admin/DetalleArticulo.jsp", request, response);
+        }else if (request.getParameter("accion").compareTo("AnhadirPelicula") == 0) {
+
+
+
+            art.setAutor("Nuevo");
+            session.setAttribute("articulo", art);
+            gotoPage("/admin/DetallePelicula.jsp", request, response);
         } else if (request.getParameter("accion").compareTo("CDNuevo") == 0) {
 
 
             /*Si la entrada no es duplicada*/
             if (artdao.ComprobarDuplicado(request, response) == 0) {
                 artdao.AgregarArticulo(request, response);
-                gotoPage("/PaginaAdministrador.jsp", request, response);
+                gotoPage("/admin/PaginaAdministrador.jsp", request, response);
             }
             art.setAnho(Integer.parseInt(request.getParameter("anho")));
             art.setUrlImagen(request.getParameter("urlImagen"));
@@ -264,7 +271,7 @@ public class ControladorArticulo extends HttpServlet {
 
             session.setAttribute("articulo", art);
 
-            gotoPage("/DetalleArticulo.jsp?tipo=errorDuplicado", request, response);
+            gotoPage("/admin/DetalleArticulo.jsp?tipo=errorDuplicado", request, response);
 
 
         } else if (request.getParameter("accion").compareTo("IrAArticulos") == 0) {
@@ -273,8 +280,8 @@ public class ControladorArticulo extends HttpServlet {
             artvo = artdao.ultimos5();
 
             session.setAttribute("catalogo", artvo);
-            gotoPage("/PaginaAdministrador.jsp", request, response);
-        } else if (request.getParameter("accion").compareTo("busquedaAvanzada2") == 0) {
+            gotoPage("/admin/PaginaAdministrador.jsp", request, response);
+        } else if (request.getParameter("accion").compareTo("busquedaAvanzada") == 0) {
 
             this.tituloBUS = request.getParameter("tituloBUS");
             this.autorBUS = request.getParameter("autorBUS");
@@ -304,7 +311,7 @@ public class ControladorArticulo extends HttpServlet {
             
             
 
-            //gotoPage("/DetalleArticulo.jsp", request, response);
+            //gotoPage("/admin/detallesCD.jsp", request, response);
         }
 
 

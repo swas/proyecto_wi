@@ -20,24 +20,15 @@
         <c:set var="variable" value="A" />
       <jsp:useBean id="id" class="java.lang.String" scope="session"/>
       <jsp:useBean id="catalogo" class="classes.vo.busquedaArticuloVO" scope="session"/>
-       
-
-
-
-
-
-         <%@include file="/seccionTitulo.jsp"%>
-
-
-      <%@include file="/seccionBuscador.jsp"%>
+      <%@include file="/comun/seccionTitulo.jsp"%>
 
 <hr>
 
 <div class="centro">
 
-	<%@include file="/seccionMenuArticulo.jsp"%>
+	<%@include file="/admin/seccionMenuArticulo.jsp"%>
     
-        <%@include file="/seccionLogin.jsp"%>
+        <%@include file="/comun/seccionLogin.jsp"%>
         
 <div class="catalog">
    <center><table style="width:550px;">

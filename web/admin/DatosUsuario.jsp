@@ -19,22 +19,16 @@
         <c:set var="variable" value="A" />
       <jsp:useBean id="id" class="java.lang.String" scope="session"/>
       <jsp:useBean id="usuario" class="classes.vo.Usuario" scope="session"/>
-
-
-
       
 
-     <%@include file="/seccionTitulo.jsp"%>
+     <%@include file="/comun/seccionTitulo.jsp"%>
 
-     <%@include file="/seccionBuscadorUsuario.jsp"%>
+     <%@include file="/admin/seccionBuscadorUsuario.jsp"%>
       <hr>
 
      <div class="centro">
-     <%@include file="/seccionMenuUsuarios.jsp"%>
-
-     
-
-      
+         
+     <%@include file="/admin/seccionMenuUsuarios.jsp"%>
 
      <c:set var="Registrado" value="Registrado" />
      <c:set var="noRegistrado" value="noRegistrado" />
@@ -277,7 +271,7 @@
                     </c:if>
 
 </div>
-   <%@include file="/seccionLogin.jsp"%>
+   <%@include file="/comun/seccionLogin.jsp"%>
 </div>
 
         

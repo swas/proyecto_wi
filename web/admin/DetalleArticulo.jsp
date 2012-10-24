@@ -12,31 +12,25 @@
 
 <html>
     <head>
-      <script type="text/javascript" src="/ProyectoWI/funciones.js"></script>
+      <script type="text/javascript" src="/ProyectoWI/scripts/funciones.js"></script>
       <title>Musica para DAA</title>
       <link rel="stylesheet" href="/ProyectoWI/estilo.css" type="text/css"/>
     </head>
     <body bgcolor="#FDF5E6">
-        <c:set var="variable" value="A" />
+      <c:set var="variable" value="A" />
       <jsp:useBean id="id" class="java.lang.String" scope="session"/>
       <jsp:useBean id="articulo" class="classes.vo.DiscoVO" scope="session"/>
 
-
-
- 
-
-
-
-      <%@include file="/seccionTitulo.jsp"%>
-
-     <%@include file="/seccionBuscador.jsp"%>
+      <%@include file="/comun/seccionTitulo.jsp"%>
 
 <hr>
 
 <div class="centro">
-	<%@include file="/seccionMenuArticulo.jsp"%>
+    
+   <%@include file="/admin/seccionMenuArticulo.jsp"%>
       
-   <%@include file="/seccionLogin.jsp"%>
+   <%@include file="/comun/seccionLogin.jsp"%>
+   
     <div class="catalog">
    <center><table style="width:550px;">
        <tr>
@@ -51,18 +45,13 @@
            <c:set var="ERROR" value="errorDuplicado"/>
            <c:set var="admin" value="admin"/>
 
-       
-
-
-
-
            <c:if test="${fn:contains(id, variable)}">
                <c:choose>
                     <c:when test="${fn:contains(param.tipo, ERROR)}"   >
                     
-                       <form action="/ProyectoWI/classes/ControladorArticulo" onSubmit="return valCamposArticulo(this);" >
-                     <br>
-                     <p class="Precio">CD duplicado introduzca otro titulo</p>
+                    <form action="/ProyectoWI/classes/ControladorArticulo" onSubmit="return valCamposArticulo(this);" >
+                    <br>
+                    <p class="Precio">CD duplicado introduzca otro titulo</p>
                     <br>Titulo:<br>
                     <input type="text" name="titulo" value="${articulo.titulo}" id="url" size="50"  />
 
@@ -286,9 +275,6 @@
 </c:choose>
 </c:if>
 </td></tr></TABLE>
-
-
-
          
   </div>
 

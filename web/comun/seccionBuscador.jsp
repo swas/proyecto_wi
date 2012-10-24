@@ -6,11 +6,11 @@
         <c:set var="aut" value="${requestScope['autorBUS']}" />
         <c:set var="anh" value="${requestScope['anhoBUS']}" />
         <c:set var="prec" value="${requestScope['precioBUS']}"/>
-	   <center>
-             <form action="/ProyectoWI/classes/ControladorArticulo" >
+	
+            <form action="/ProyectoWI/classes/ControladorArticulo" >
 
 
-               <input type="text" name="tituloBUS" id="url"  value="${tit}" onfocus="if(this.value=='Titulo')this.value=''" />
+            <input type="text" name="tituloBUS" id="url"  value="${tit}" onfocus="if(this.value=='Titulo')this.value=''" />
 
             <input type="text" name="autorBUS" id="url"  value="${aut}" onfocus="if(this.value=='Autor')this.value=''" />
 
@@ -59,12 +59,12 @@
         </select>
 
 
-            <input type="hidden" name="accion" value="busquedaAvanzada" size = "15" class = "formularioAlta">
+            <input type="hidden" name="accion" value="busquedaAvanzada" size = "15" class="formularioAlta">
             &nbsp;&nbsp;
             <input type="submit" value="Buscar">
 
             </form>
-      </center>
+      
 	  
 
 

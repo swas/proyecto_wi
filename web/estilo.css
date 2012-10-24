@@ -1,3 +1,38 @@
+/*+++++++++++++++++++++++CABECERA++++++++++++++++++*/
+
+.cabecera{        
+    height: 100px;
+    width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo{    
+    height: 100px;
+    float: left;       
+}
+
+.seccion1{
+    height: 100px;
+    float: left;
+    margin-left: 30px;    
+}
+
+.titulo{
+    height: 70px;  
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.titulop{
+    text-align: left;
+    margin: 0 0 0 0; 
+}
+
+.buscador{
+   height: 30px; 
+}
+
 body {
     background-color:#ffffff;
 }
@@ -22,7 +57,7 @@ body {
 }
 
 .centro{
-    width:            950px;
+    width: 950px;
     top: 0px;
     margin-left: auto;
     margin-right: auto;
@@ -46,7 +81,7 @@ body {
 
 .catalog{
     width: 600px;
-    height: 450px;
+    height: 500px;
     text-align: center;
     float: center;
     overflow: auto;    
@@ -66,33 +101,76 @@ body {
     border-radius: 6px 6px 6px 6px;
 
 }
+#menuadminTotal {
 
+   width: 150px;
+   float:left;
+}
+
+#menuTitle{
+    border-top: 1px solid black;
+}
+
+#pelicula{
+    display: block;
+}
+
+#musica{
+    
+    display: none;
+}
 #menuv {
 
    width: 150px;
    float:left;
    border: 1px solid black;
-   border-width: 1px 1px 0 1px;
+   border-width: 1px 1px 1px 1px;
    font: 80% "Trebuchet MS", Arial, Helvetica, sans-serif;
    -moz-border-radius: 6px 6px 0px 0px;
    -webkit-border-radius: 6px 6px 0px 0px;
    border-radius: 6px 6px 0px 0px;
 }
 
-#menuv ul, li {
+#musica ul, li {
         list-style-type: none;        
 }
 
-#menuv ul {
+#musica ul {
         margin: 0;
         padding: 0;
 }
 
-#menuv li {
+#musica li {
         border-bottom: 1px solid black;
 }
 
-#menuv a {
+#musica a {
+        text-decoration: none;
+        color: whitesmoke;
+        background: #48708b;
+        display: block;
+        padding: 3px 6px;
+        width: 138px;
+}
+#musica a:hover {
+        color: #48708b;
+        background: #DBEBF6;
+}
+
+#pelicula ul, li {
+        list-style-type: none;        
+}
+
+#pelicula ul {
+        margin: 0;
+        padding: 0;
+}
+
+#pelicula li {
+        border-bottom: 1px solid black;
+}
+
+#pelicula a {
         text-decoration: none;
         color: whitesmoke;
         background: #48708b;
@@ -101,9 +179,43 @@ body {
         width: 138px;
 }
 
-#menuv a:hover {
+#pelicula a:hover {
         color: #48708b;
         background: #DBEBF6;
+}
+
+#menuadmin {
+
+   width: 150px;
+   float:left;
+   border: 1px solid black;
+   border-width: 1px 1px 1px 1px;
+   font: 80% "Trebuchet MS", Arial, Helvetica, sans-serif;
+   -moz-border-radius: 6px 6px 0px 0px;
+   -webkit-border-radius: 6px 6px 0px 0px;
+   border-radius: 6px 6px 0px 0px;
+}
+
+#menuadmin ul, li {
+        list-style-type: none;        
+}
+
+#menuadmin ul {
+        margin: 0;
+        padding: 0;
+}
+
+#menuadmin li {
+        border-bottom: 1px solid black;
+}
+
+#menuadmin a {
+        text-decoration: none;
+        color: whitesmoke;
+        background: #48708b;
+        display: block;
+        padding: 3px 6px;
+        width: 138px;
 }
 
 table.sample {

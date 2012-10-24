@@ -55,7 +55,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
          else if (request.getParameter("accion").compareTo("login")==0){
 
-             gotoPage("/Login.jsp", request, response);
+             gotoPage("/registro/Login.jsp", request, response);
          }
 
         else if (request.getParameter("accion").compareTo("ComprobarLogin")==0){
@@ -86,7 +86,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
                     
                 }
                 else{
-                    gotoPage("/LoginErroneo.jsp", request, response);
+                    gotoPage("/registro/LoginErroneo.jsp", request, response);
                 }
 
 
@@ -94,7 +94,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
         else if (request.getParameter("accion").compareTo("registro")==0){
      
-        gotoPage("/Registro.jsp", request, response);
+        gotoPage("/registro/Registro.jsp", request, response);
     
         }
 
@@ -115,7 +115,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
              }
         else{
         
-        gotoPage("/Registro.jsp?tipo=dupi", request, response);
+        gotoPage("/registro/Registro.jsp?tipo=dupi", request, response);
 
         }
          }
@@ -128,13 +128,13 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
                 Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
         request.setAttribute("user", usu);
-        gotoPage("/modificarDatos.jsp", request, response);
+        gotoPage("/registro/modificarDatos.jsp", request, response);
         }
 
         else if (request.getParameter("accion").compareTo("Carrito")==0){
 
 
-        gotoPage("/carrito.jsp", request, response);
+        gotoPage("/compra/carrito.jsp", request, response);
 
         }
 
@@ -150,7 +150,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
        request.setAttribute("user", u);
 
-       gotoPage("/modificarDatos.jsp", request, response);
+       gotoPage("/registro/modificarDatos.jsp", request, response);
         }
 
 
@@ -185,7 +185,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
               
 
-             gotoPage("/Factura.jsp", request, response);
+             gotoPage("/compra/Factura.jsp", request, response);
 
         }
 
@@ -200,7 +200,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?numUsuariosPendientes="+Pendientes+"&numUsuariosRegistrados="+Registrados+"", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?numUsuariosPendientes="+Pendientes+"&numUsuariosRegistrados="+Registrados+"", request, response);
         }
 
         else if(request.getParameter("accion").compareTo("UsuariosRegistrados")==0){
@@ -211,7 +211,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?tipo=Registrado", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=Registrado", request, response);
         }
 
 
@@ -225,7 +225,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?tipo=noRegistrado", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=noRegistrado", request, response);
          }
 
 
@@ -240,7 +240,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?tipo=Baja", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=Baja", request, response);
          }
 
 
@@ -251,7 +251,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?tipo=Registrado", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=Registrado", request, response);
          }
 
         /*Llamado desde datosUsuario para volver a la lista de usuarios No Registrados*/
@@ -261,7 +261,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?tipo=noRegistrado", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=noRegistrado", request, response);
          }
 
 
@@ -272,7 +272,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?tipo=Baja", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=Baja", request, response);
          }
 
          else if(request.getParameter("accion").compareTo("DetalleRegistrado")==0){
@@ -286,7 +286,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/DatosUsuario.jsp?tipo=Registrado", request, response);
+        gotoPage("/admin/DatosUsuario.jsp?tipo=Registrado", request, response);
          }
 
          else if(request.getParameter("accion").compareTo("DetalleNoRegistrado")==0){
@@ -295,7 +295,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
         usuvo=(busquedaUsuarioVO) session.getAttribute("usuarios");
         usu=(Usuario) usuvo.get(request.getParameter("idUsuario"));
         session.setAttribute("usuario", usu);
-        gotoPage("/DatosUsuario.jsp?tipo=noRegistrado", request, response);
+        gotoPage("/admin/DatosUsuario.jsp?tipo=noRegistrado", request, response);
          }
 
 
@@ -307,7 +307,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
         usuvo=(busquedaUsuarioVO) session.getAttribute("usuarios");
         usu=(Usuario) usuvo.get(request.getParameter("idUsuario"));
         session.setAttribute("usuario", usu);
-        gotoPage("/DatosUsuario.jsp?tipo=Baja", request, response);
+        gotoPage("/admin/DatosUsuario.jsp?tipo=Baja", request, response);
          }
 
 
@@ -318,7 +318,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
         usuvo=(busquedaUsuarioVO) session.getAttribute("usuarios");
         usu=(Usuario) usuvo.get(request.getParameter("idUsuario"));
         session.setAttribute("usuario", usu);
-        gotoPage("/DatosUsuario.jsp?tipo=Registrado", request, response);
+        gotoPage("/admin/DatosUsuario.jsp?tipo=Registrado", request, response);
          }
 
         /*Accion desde detalleUsuario para modifcar los datos de un usuario*/
@@ -327,7 +327,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
          
          
          helperusu.ModificarRegistradoDesdeDetalle(request, response);
-         gotoPage("/PaginaUsuario.jsp?tipo=Registrado", request, response);
+         gotoPage("/admin/PaginaUsuario.jsp?tipo=Registrado", request, response);
          }
 
 
@@ -339,7 +339,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
          
          helperusu.ModificarNoRegistradoDesdeDetalle(request, response);
-        gotoPage("/PaginaUsuario.jsp?tipo=noRegistrado", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=noRegistrado", request, response);
          }
 
 
@@ -349,7 +349,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
          
          helperusu.ModificarBajaDesdeDetalle(request, response);
-        gotoPage("/PaginaUsuario.jsp?tipo=Baja", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=Baja", request, response);
          }
 
 
@@ -367,7 +367,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?tipo=Registrado", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=Registrado", request, response);
          }
 
 
@@ -387,7 +387,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?tipo=noRegistrado", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=noRegistrado", request, response);
          }
 
 
@@ -403,7 +403,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
 
 
-        gotoPage("/PaginaUsuario.jsp?tipo=Baja", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=Baja", request, response);
          }
 
         else if(request.getParameter("accion").compareTo("PerfilAdmin")==0){
@@ -412,7 +412,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
         usu=usudao.obtenerPorId((String) session.getAttribute("id"));
         session.setAttribute("usuario", usu);
 
-        gotoPage("/DatosUsuario.jsp?tipo=admin", request, response);
+        gotoPage("/admin/DatosUsuario.jsp?tipo=admin", request, response);
          }
 
         else if(request.getParameter("accion").compareTo("ModificarAdmin")==0){
@@ -435,7 +435,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
 
          
          helperusu.ModificarRegistradoDesdeDetalle(request, response);
-        gotoPage("/PaginaUsuario.jsp?tipo=Registrado", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=Registrado", request, response);
          }
 
 
@@ -445,7 +445,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
         usuvo=usudao.obtenerUsuarioPorCorreo(request.getParameter("correo"));
 
         session.setAttribute("usuarios",usuvo );
-        gotoPage("/PaginaUsuario.jsp?tipo=Busqueda", request, response);
+        gotoPage("/admin/PaginaUsuario.jsp?tipo=Busqueda", request, response);
          }
 
 
@@ -462,15 +462,15 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
         if (request.getParameter("tipo").compareTo("1")==0){
 
 
-        gotoPage("/DatosUsuario.jsp?tipo=Registrado", request, response);
+        gotoPage("/admin/DatosUsuario.jsp?tipo=Registrado", request, response);
         }
          else if (request.getParameter("tipo").compareTo("2")==0){
 
-        gotoPage("/DatosUsuario.jsp?tipo=noRegistrado", request, response);
+        gotoPage("/admin/DatosUsuario.jsp?tipo=noRegistrado", request, response);
         }
          else{
 
-         gotoPage("/DatosUsuario.jsp?tipo=Baja", request, response);
+         gotoPage("/admin/DatosUsuario.jsp?tipo=Baja", request, response);
 
          }
 
