@@ -28,6 +28,7 @@
             <p style="color: white">Bienvenido</p>
             <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=Micuenta"><button style="width:160;height:24; background-color:#FDF5E6; ">Mi Cuenta</button></a></p>
             <p><a href="/ProyectoWI/classes/ControladorArticulo?accion=Carrito"><button style="width:160;height:24; background-color:#FDF5E6; ">Carrito</button></a></p>
+            <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=irAPagar"><button style="width:160;height:24; background-color:#FDF5E6; ">Pagar</button></a></p>
             <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=LogOut"><button style="width:160;height:24; background-color:#FDF5E6; ">Salir</button></a></p>
 
           </c:when>
