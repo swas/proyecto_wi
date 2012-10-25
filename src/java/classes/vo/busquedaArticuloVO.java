@@ -5,9 +5,7 @@ import java.util.*;
 
 public class busquedaArticuloVO {
     HashMap elemento = null;
-    
-    
-
+      
     public busquedaArticuloVO() {
         elemento = new HashMap();
     }
@@ -15,10 +13,11 @@ public class busquedaArticuloVO {
     public synchronized void anhadir(int nombre, DiscoVO articulo) {
 
             elemento.put(articulo.getTitulo(),articulo);           
-        
-        
+     }
+    
+    public synchronized void anhadir2(int nombre, PeliculaVO articulo) {
 
-       
+            elemento.put(articulo.getTitulo(),articulo);           
      }
 
      /*Eliminamos un elemento del hashmap utilizando la clave(key) que es el nombre del CD*/

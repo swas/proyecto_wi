@@ -2,6 +2,7 @@ package classes;
 
 import classes.vo.*;
 import DAO.DiscoDAO;
+import DAO.PeliculaDAO;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,7 @@ public class ControladorArticulo extends HttpServlet {
 
         DiscoDAO artdao = new DiscoDAO();
         ArticuloVO art = new DiscoVO();
+        PeliculaDAO pdao = new PeliculaDAO();
         busquedaArticuloVO artvo = new busquedaArticuloVO();
         HelperArticulos helpart = new HelperArticulos();
         HttpSession session = request.getSession(true);
@@ -53,17 +55,18 @@ public class ControladorArticulo extends HttpServlet {
 
         if (request.getParameter("accion").compareTo("Catalogo") == 0) {
 
-
-
-
             artvo = artdao.obtenerArticuloPorCategoria(request.getParameter("categoria"));
-
-
 
             request.setAttribute("cata", artvo);
 
             gotoPage("/index.jsp", request, response);
 
+        } else if(request.getParameter("accion").compareTo("Catalogo2") == 0){
+            artvo = pdao.obtenerArticuloPorCategoria(request.getParameter("categoria"));
+
+            request.setAttribute("cata", artvo);
+
+            gotoPage("/index.jsp", request, response);
         } else if (request.getParameter("accion").compareTo("Carrito") == 0) {
 
             gotoPage("/compra/carrito.jsp", request, response);

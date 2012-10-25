@@ -13,17 +13,23 @@
         </div>    
         <div id="pelicula">                            
         <ul>                
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo&categoria=Prueba">Prueba</a></li>                
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Action">Acción</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Adventure">Aventuras</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Animation">Animación</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Sci-Fi">Ciencia Ficción</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Comedy">Comedia</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Crime">Crimenes</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Documentary">Documental</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Drama">Drama</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Fantasy">Fantasía</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=War">Guerra</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Children">Infantil</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=IMAX">IMAX</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Mistery">Misterio</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Romantic">Románticas</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Horror">Terror</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Thriller">Thriller</a></li>
+                
         </ul>
         </div>
         <div id="menuTitle"> 
