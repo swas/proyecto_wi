@@ -25,8 +25,8 @@
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=War">Guerra</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Children">Infantil</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=IMAX">IMAX</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Mistery">Misterio</a></li>
-                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Romantic">Románticas</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Mystery">Misterio</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Romance">Románticas</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Horror">Terror</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Catalogo2&categoria=Thriller">Thriller</a></li>
                 
