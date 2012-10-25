@@ -7,3 +7,7 @@
 /nbproject/private/
 /build/
 /dist/
+build.xml
+/web/META-INF/
+/web/WEB-INF/
+/src/conf/
