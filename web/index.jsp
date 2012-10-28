@@ -53,19 +53,34 @@
       <c:otherwise>     
        <tr>
        <th width="160" class="head">Carátula</th>
-       <th width="35" class="head">Cod. CD</th>
+       <th width="35" class="head">Código</th>
        <th width="180" class="head">Título</th>
        <th width="120" class="head">Autor</th>
        <th width="20" class="head">Precio</th>
       </tr>
       <c:forEach var="entry" items="${catalog.elementos}">
-       <tr>
-       <td width="160" class="dato" align="center"><img src="${entry.urlImagen}" /></td>
-       <td width="35" class="dato" align="center"><c:out value="${entry.idArticulo}" /></td>
-       <td width="180" class="dato" align="center"><a href="/ProyectoWI/classes/ControladorArticulo?accion=Select&cd=${entry.titulo}"><c:out value="${entry.titulo}" /></a></td>
-       <td width="120" class="dato" align="center"><c:out value="${entry.autor}" /></td>
-       <td width="20" class="dato" align="center"><c:out value="${entry.precio}" /></td>
-       </tr>
+          <c:choose>
+            <c:when test="${entry.tipo=='pelicula'}">
+                <tr>
+                <td width="160" class="dato" align="center"><img src="${entry.urlImagen}" /></td>
+                <td width="35" class="dato" align="center"><c:out value="${entry.idArticulo}" /></td>
+                <td width="180" class="dato" align="center"><a href="/ProyectoWI/classes/ControladorArticulo?accion=Select2&cd=${entry.titulo}"><c:out value="${entry.titulo}" /></a></td>
+                <td width="120" class="dato" align="center"><c:out value="${entry.autor}" /></td>
+                <td width="20" class="dato" align="center"><c:out value="${entry.precio}" /></td>
+                </tr>
+            </c:when>
+
+            <c:otherwise>
+                <tr>
+                <td width="160" class="dato" align="center"><img src="${entry.urlImagen}" /></td>
+                <td width="35" class="dato" align="center"><c:out value="${entry.idArticulo}" /></td>
+                <td width="180" class="dato" align="center"><a href="/ProyectoWI/classes/ControladorArticulo?accion=Select&cd=${entry.titulo}"><c:out value="${entry.titulo}" /></a></td>
+                <td width="120" class="dato" align="center"><c:out value="${entry.autor}" /></td>
+                <td width="20" class="dato" align="center"><c:out value="${entry.precio}" /></td>
+                </tr>
+            </c:otherwise>
+         </c:choose>
+       
        </c:forEach>
       </c:otherwise>
       </c:choose>

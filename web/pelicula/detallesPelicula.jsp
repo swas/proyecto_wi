@@ -44,11 +44,7 @@
            <c:set var="art" value="${requestScope['articulo']}" />
            <p><img src="${art.urlImagen}"></p>
            <p>${art.titulo}</p>
-           <p>${art.titulospain}</p>
-           <p>${art.directores}</p>
-           <p>${art.actores}</p>
-           <p>${art.pais}</p>
-           <p>${art.anho}</p>
+ 
            <p>${art.categoria} &nbsp;&nbsp; ${art.anho}</p>
            <p>Precio: ${art.precio} &euro; </p>
            <input type="hidden" name="id" value="${art.idArticulo}">

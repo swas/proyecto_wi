@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author Antonio David Fornís Méndez
  */
-public class PeliculaVO {
+public class PeliculaVO implements ArticuloVO{
 private String titulo;
 private int idArticulo;
 private float precio;
@@ -17,10 +17,10 @@ private ArrayList<String> comentarios;
 private String categoria;
 private int anho;
 private String autor;
+private String tipo;
 
 
-
-    public PeliculaVO(String titulo, int idArticulo, float precio, int cantidad, String urlImagen, String categoria, int anho, String autor) {
+    public PeliculaVO(String titulo, int idArticulo, float precio, int cantidad, String urlImagen, String categoria, int anho, String autor,String tipo) {
         this.titulo = titulo;
         this.idArticulo = idArticulo;
         this.precio = precio;
@@ -29,6 +29,15 @@ private String autor;
         this.categoria = categoria;
         this.anho = anho;
         this.autor = autor;
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public PeliculaVO(){

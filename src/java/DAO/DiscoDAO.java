@@ -8,6 +8,7 @@ import classes.vo.DiscoVO;
 import classes.vo.busquedaArticuloVO;
 import java.sql.*;
 import classes.*;
+import classes.vo.PeliculaVO;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -135,7 +136,7 @@ public DiscoDAO(){}
 
 	               DiscoVO art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
 	                       resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-	                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+	                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
 	               catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -486,7 +487,7 @@ return valor;
 
                DiscoVO art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
                catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -534,7 +535,7 @@ return valor;
 
                art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
                art.setComentarios(this.comentarios(resultado.getString("idArticulo")));
 
@@ -576,7 +577,7 @@ return valor;
 
                art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
                art.setComentarios(this.comentarios(resultado.getString("idArticulo")));              
 
@@ -697,7 +698,7 @@ public busquedaArticuloVO obtenerArticuloPorTitulo(String Titulo){
 
                DiscoVO art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
                catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -741,7 +742,7 @@ public busquedaArticuloVO obtenerArticuloPorTitulo(String Titulo){
                   
                DiscoVO art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
                      catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -791,7 +792,7 @@ public busquedaArticuloVO obtenerArticuloPorAutor(String Autor){
 
                DiscoVO art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
                catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -841,7 +842,7 @@ public busquedaArticuloVO obtenerArticuloPorPrecio(String Precio){
 
                DiscoVO art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
                catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -889,7 +890,7 @@ public busquedaArticuloVO buscarCDPorCategoria(String Categoria){
 
                DiscoVO art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
                catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -975,7 +976,7 @@ public busquedaArticuloVO obtenerDestacados(){
 
                DiscoVO art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
                catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -1136,7 +1137,7 @@ public DiscoVO obtenerArticuloPorID(int ID){
 
                DiscoVO art=new DiscoVO(resultado.getString("tituloCD"),resultado.getInt("idArticulo"),
                        resultado.getFloat("precio"),resultado.getInt("cantidad"),resultado.getString("urlImagen")
-                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"));
+                       ,resultado.getString("categoria"),resultado.getInt("anho"),resultado.getString("autor"),"disco");
 
 
                        return art;
@@ -1166,4 +1167,10 @@ public DiscoVO obtenerArticuloPorID(int ID){
 
   }
 
+    public PeliculaVO obtenerArticulo2(String Titulo) {
+        return null;
+    }
+
 }
+
+

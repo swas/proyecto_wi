@@ -40,6 +40,7 @@ public class ControladorArticulo extends HttpServlet {
         DiscoDAO artdao = new DiscoDAO();
         ArticuloVO art = new DiscoVO();
         PeliculaDAO pdao = new PeliculaDAO();
+        ArticuloVO art2 = new PeliculaVO();
         busquedaArticuloVO artvo = new busquedaArticuloVO();
         HelperArticulos helpart = new HelperArticulos();
         HttpSession session = request.getSession(true);
@@ -97,9 +98,6 @@ public class ControladorArticulo extends HttpServlet {
 
         } else if (request.getParameter("accion").compareTo("Select") == 0) {
 
-
-
-
             art = artdao.obtenerArticulo(request.getParameter("cd"));
             int a = artdao.puedeComentar(art.getIdArticulo(), String.valueOf(session.getAttribute("id")));
 
@@ -108,15 +106,19 @@ public class ControladorArticulo extends HttpServlet {
 
             gotoPage("/cd/detallesCD.jsp", request, response);
 
+        } else if (request.getParameter("accion").compareTo("Select2") == 0) {
+
+            art2 = pdao.obtenerArticulo2(request.getParameter("cd"));
+            int a = pdao.puedeComentar(art.getIdArticulo(), String.valueOf(session.getAttribute("id")));
+
+            request.setAttribute("articulo", art2);
+            request.setAttribute("come", a);
+
+            gotoPage("/pelicula/detallesPelicula.jsp", request, response);
+
         } else if (request.getParameter("accion").compareTo("Comprar") == 0) {
 
-
-
-
             carro = (ShoppingCart) session.getAttribute("cart");
-
-
-
 
             art = artdao.obtenerArticuloID(Integer.parseInt(request.getParameter("id")));
 

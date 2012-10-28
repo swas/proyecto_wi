@@ -17,10 +17,11 @@ private ArrayList<String> comentarios;
 private String categoria;
 private int anho;
 private String autor;
+private String tipo;
 
 
 
-    public DiscoVO(String titulo, int idArticulo, float precio, int cantidad, String urlImagen, String categoria, int anho, String autor) {
+    public DiscoVO(String titulo, int idArticulo, float precio, int cantidad, String urlImagen, String categoria, int anho, String autor,String tipo) {
         this.titulo = titulo;
         this.idArticulo = idArticulo;
         this.precio = precio;
@@ -29,6 +30,7 @@ private String autor;
         this.categoria = categoria;
         this.anho = anho;
         this.autor = autor;
+        this.tipo = tipo;
     }
 
     public DiscoVO(){
@@ -112,6 +114,14 @@ private String autor;
 
     public void setTitulo(String nombre) {
         this.titulo = nombre;
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     

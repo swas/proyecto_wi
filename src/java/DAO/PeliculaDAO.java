@@ -115,7 +115,7 @@ public class PeliculaDAO implements ArticuloDAO {
             while (resultado.next()) {
 
                 DiscoVO art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
+                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
 
                 catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -365,13 +365,9 @@ public class PeliculaDAO implements ArticuloDAO {
 
             ResultSet resultado = declaracion.executeQuery(query);
 
-
-
             while (resultado.next()) {
-
                 a = 1;
             }
-
 
         } catch (Exception exc) {
             System.out.println("puede comentar-> " + exc.getMessage());
@@ -432,7 +428,7 @@ public class PeliculaDAO implements ArticuloDAO {
             while (resultado.next()) {
 
                 DiscoVO art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
+                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
 
                 catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -458,26 +454,28 @@ public class PeliculaDAO implements ArticuloDAO {
 
 
     }
-
+    
     public DiscoVO obtenerArticulo(String Titulo) {
+        return null;
+    }
 
-        DiscoVO art = new DiscoVO();
+    public PeliculaVO obtenerArticulo2(String Titulo) {
+
+        PeliculaVO art = new PeliculaVO();
 
         try {
             testDriver();
             con = obtenerConexion("localhost", "tienda");
             Statement declaracion = con.createStatement();
 
-            String query = "SELECT * from articulos WHERE tituloCD = '" + Titulo + "'";
+            String query = "SELECT * from movies WHERE spanishTitle = '" + Titulo + "'";
 
             ResultSet resultado = declaracion.executeQuery(query);
 
             while (resultado.next()) {
 
-
-                art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
-
+                art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),"aaa",resultado.getInt("year"),"manolo","pelicula");
+                
                 art.setComentarios(this.comentarios(resultado.getString("idArticulo")));
 
             }
@@ -513,7 +511,7 @@ public class PeliculaDAO implements ArticuloDAO {
 
 
                 art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
+                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
 
                 art.setComentarios(this.comentarios(resultado.getString("idArticulo")));
 
@@ -622,7 +620,7 @@ public class PeliculaDAO implements ArticuloDAO {
 
 
                 DiscoVO art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
+                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
 
                 catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -657,16 +655,25 @@ public class PeliculaDAO implements ArticuloDAO {
             String query = "SELECT * from movies WHERE id IN (SELECT movieID FROM movie_genres WHERE genre = '" + Categoria + "')";
 
             ResultSet resultado = declaracion.executeQuery(query);
-            System.out.println('1');
 
+            ArrayList<PeliculaVO> arts = new ArrayList<PeliculaVO>();
+                       
             while (resultado.next()) {              
-
-                PeliculaVO art = new PeliculaVO(resultado.getString("title"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),Categoria,resultado.getInt("year"),"manolo");
-                catalogo.anhadir2(art.getIdArticulo(), art);
-
+                PeliculaVO art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),Categoria,resultado.getInt("year"),"","pelicula");
+                arts.add(art);
+                
             }
-
-
+            
+            for(int i=0;i<arts.size();i++){
+                String query2 = "SELECT * FROM movie_directors WHERE movieID = '"+arts.get(i).getIdArticulo()+"'";
+                ResultSet resultado2 = declaracion.executeQuery(query2);
+                resultado2.next();
+                arts.get(i).setAutor(resultado2.getString("directorName"));
+                catalogo.anhadir2(arts.get(i).getIdArticulo(), arts.get(i));
+            }
+            
+                
+            
         } catch (Exception exc) {
             System.out.println("Error obtenerArticuloPorCategoria-> " + exc.getMessage());
         } finally {
@@ -700,7 +707,7 @@ public class PeliculaDAO implements ArticuloDAO {
             while (resultado.next()) {
 
                 DiscoVO art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
+                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
 
                 catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -746,7 +753,7 @@ public class PeliculaDAO implements ArticuloDAO {
             while (resultado.next()) {
 
                 DiscoVO art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
+                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
 
                 catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -792,7 +799,7 @@ public class PeliculaDAO implements ArticuloDAO {
             while (resultado.next()) {
 
                 DiscoVO art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
+                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
 
                 catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -873,7 +880,7 @@ public class PeliculaDAO implements ArticuloDAO {
             while (resultado.next()) {
 
                 DiscoVO art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
+                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
 
                 catalogo.anhadir(art.getIdArticulo(), art);
 
@@ -1019,7 +1026,7 @@ public class PeliculaDAO implements ArticuloDAO {
             while (resultado.next()) {
 
                 DiscoVO art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"));
+                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
 
 
                 return art;

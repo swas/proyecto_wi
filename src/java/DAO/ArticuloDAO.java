@@ -8,6 +8,7 @@ import classes.vo.ShoppingCart;
 import classes.vo.DiscoVO;
 import classes.vo.busquedaArticuloVO;
 import classes.*;
+import classes.vo.PeliculaVO;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +47,8 @@ public interface ArticuloDAO {
     public busquedaArticuloVO ultimos5();
 
     public DiscoVO obtenerArticulo(String Titulo);
+    
+    public PeliculaVO obtenerArticulo2(String Titulo);
 
     public DiscoVO obtenerArticuloID(int id);
 
