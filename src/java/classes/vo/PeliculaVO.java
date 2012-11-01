@@ -14,6 +14,8 @@ private float precio;
 private int cantidad;
 private String urlImagen;
 private ArrayList<String> comentarios;
+private ArrayList<String> actores;
+private ArrayList<String> categorias;
 private String categoria;
 private int anho;
 private String autor;
@@ -32,6 +34,14 @@ private String tipo;
         this.tipo = tipo;
     }
 
+    public ArrayList<String> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(ArrayList<String> categorias) {
+        this.categorias = categorias;
+    }
+    
     public String getTipo() {
         return tipo;
     }
@@ -121,6 +131,15 @@ private String tipo;
 
     public void setTitulo(String nombre) {
         this.titulo = nombre;
+    }
+    
+    
+    public ArrayList<String> getActores() {
+        return actores;
+    }
+
+    public void setActores(ArrayList<String> actores) {
+        this.actores = actores;
     }
 
     

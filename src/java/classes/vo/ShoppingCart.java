@@ -25,19 +25,15 @@ public class ShoppingCart {
      contario lo añadimos al hashmap*/
     
     public synchronized void anhadir(int nombre, ArticuloVO articulo) {
-
-
         if(elemento.containsKey(nombre)) {
 
             ArticuloVO a=(ArticuloVO) elemento.get(nombre);
-           a.setCantidad(a.getCantidad()+articulo.getCantidad());
+            a.setCantidad(a.getCantidad()+articulo.getCantidad());
         } else {
             elemento.put(articulo.getIdArticulo(),articulo);
         }
-        
-
-       
      }
+   
 
      /*Eliminamos un elemento del hashmap utilizando la clave(key) que es el nombre del CD*/
     public synchronized void eliminar(int nombre){

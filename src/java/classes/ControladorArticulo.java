@@ -144,6 +144,17 @@ public class ControladorArticulo extends HttpServlet {
 
                 gotoPage("/compra/carrito.jsp", request, response);
             }
+        } else if (request.getParameter("accion").compareTo("Comprar2") == 0) {
+
+            carro = (ShoppingCart) session.getAttribute("cart");
+
+            art2 = pdao.obtenerArticuloID2(Integer.parseInt(request.getParameter("id")));
+
+            art2.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
+            carro.anhadir(art2.getIdArticulo(), art2);
+            session.setAttribute("cart", carro);
+            gotoPage("/compra/carrito.jsp", request, response);
+            
         } else if (request.getParameter("accion").compareTo("Pago") == 0) {
 
 

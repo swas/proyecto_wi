@@ -474,12 +474,39 @@ public class PeliculaDAO implements ArticuloDAO {
 
             while (resultado.next()) {
 
-                art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),"aaa",resultado.getInt("year"),"manolo","pelicula");
+                art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),"aaa",resultado.getInt("year"),"","pelicula");
+                art.setComentarios(this.comentarios(resultado.getString("id")));
                 
-                art.setComentarios(this.comentarios(resultado.getString("idArticulo")));
+                int id = resultado.getInt("id");
+                
+                String query2 = "SELECT directorName FROM movie_directors WHERE movieID = '"+id+"'";
+                ResultSet resultado2 = declaracion.executeQuery(query2);
 
-            }
-
+                while (resultado2.next()) {
+                    art.setAutor(resultado2.getString("directorName"));
+                }
+                
+                String query3 = "SELECT actorName FROM movie_actors WHERE movieID = '"+id+"'";
+                ResultSet resultado3 = declaracion.executeQuery(query3);
+                ArrayList<String> actors = new ArrayList<String>();
+                
+                while (resultado3.next()) {
+                    actors.add(resultado3.getString("actorName"));
+                }
+                art.setActores(actors);
+                
+                String query4 = "SELECT genre FROM movie_genres WHERE movieID = '"+id+"'";
+                ResultSet resultado4= declaracion.executeQuery(query4);
+                ArrayList<String> categorias = new ArrayList<String>();
+                
+                while (resultado4.next()) {
+                    categorias.add(resultado4.getString("genre"));
+                }
+                art.setCategorias(categorias);
+            }   
+            
+            
+            
         } catch (Exception exc) {
             System.out.println("Error buscarCDPorId-> " + exc.getMessage());
         } finally {
@@ -493,28 +520,25 @@ public class PeliculaDAO implements ArticuloDAO {
 
         return art;
     }
+    
+    public DiscoVO obtenerArticuloID(int id){return null;}
 
-    public DiscoVO obtenerArticuloID(int id) {
+    public PeliculaVO obtenerArticuloID2(int id) {
 
-        DiscoVO art = new DiscoVO();
+        PeliculaVO art = new PeliculaVO();
 
         try {
             testDriver();
             con = obtenerConexion("localhost", "tienda");
             Statement declaracion = con.createStatement();
 
-            String query = "SELECT * from articulos WHERE idArticulo = '" + id + "'";
+            String query = "SELECT * from movies WHERE id = '" + id + "'";
 
             ResultSet resultado = declaracion.executeQuery(query);
 
             while (resultado.next()) {
-
-
-                art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
-
-                art.setComentarios(this.comentarios(resultado.getString("idArticulo")));
-
+                art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),"aaa",resultado.getInt("year"),"","pelicula");
+                art.setComentarios(this.comentarios(resultado.getString("id")));
             }
 
         } catch (Exception exc) {

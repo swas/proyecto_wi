@@ -44,11 +44,19 @@
            <c:set var="art" value="${requestScope['articulo']}" />
            <p><img src="${art.urlImagen}"></p>
            <p>${art.titulo}</p>
- 
-           <p>${art.categoria} &nbsp;&nbsp; ${art.anho}</p>
+           <p>Director: ${art.autor}</p>
+           <p>Actores: 
+            <c:forEach items="${art.actores}" var="act">
+                <c:out value="${act}. "/> 
+            </c:forEach> </p>
+           <p>Categorías: 
+            <c:forEach items="${art.categorias}" var="cat">
+                <c:out value="${cat}. "/> 
+            </c:forEach> </p>
+           <p>Año:${art.anho}</p>
            <p>Precio: ${art.precio} &euro; </p>
            <input type="hidden" name="id" value="${art.idArticulo}">
-           <input type="hidden" name="accion" value="Comprar">
+           <input type="hidden" name="accion" value="Comprar2">
            <c:choose>
                <c:when test="${art.cantidad==0}">
                     <p style="color: red;">El producto esta agotado. Disculpe las molestias.</p>

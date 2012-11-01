@@ -1171,6 +1171,10 @@ public DiscoVO obtenerArticuloPorID(int ID){
         return null;
     }
 
+    public PeliculaVO obtenerArticuloID2(int id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
 
 

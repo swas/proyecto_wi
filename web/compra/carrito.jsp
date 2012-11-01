@@ -45,27 +45,41 @@
       <center>
           <table style="width:550px;">
               <tr>
-       <th width="160px" class="head">Carátula</th>
-       <th width="180px" class="head">Título</th>
-       <th td width="35px" align="center" class="head">Cantidad</th>
-       <th width="20px" class="head">Precio</th>
-       <th width="20px" class="head" align="center">Eliminar</th>
+       <th width="160" class="head">Carátula</th>
+       <th width="180" class="head">Título</th>
+       <th td width="35" align="center" class="head">Cantidad</th>
+       <th width="20" class="head">Precio</th>
+       <th width="20" class="head" align="center">Eliminar</th>
       </tr>
       <c:forEach var="entry" items="${cart.elementos}">
-       <tr>
-       <td width="160px" class="dato" align="center"><img  src="${entry.urlImagen}" /></td>
-       <td width="180px" class="dato" align="center"><c:out value="${entry.titulo}" /></td>
-       <td width="35px" class="dato" align="center"><c:out value="${entry.cantidad}" /></td>
-       <td width="20px" class="dato" align="center"><c:out value="${entry.precio}" /></td>
-       <td width="20px" class="dato" align="center"> <input type="radio" name="eliminar" value="${entry.idArticulo}"> </td>
-       </tr>
+       <c:choose>
+           <c:when test="${entry.tipo=='pelicula'}">
+               <tr>
+                <td width="160" class="dato" align="center"><img  src="${entry.urlImagen}" /></td>
+                <td width="180" class="dato" align="center"><c:out value="${entry.titulo}" /></td>
+                <td width="35" class="dato" align="center"><c:out value="${entry.cantidad}" /></td>
+                <td width="20" class="dato" align="center"><c:out value="${entry.precio}" /></td>
+                <td width="20" class="dato" align="center"> <input type="radio" name="eliminar" value="${entry.idArticulo}"> </td>
+                </tr>
+           </c:when>
+           
+           <c:otherwise>
+                <tr>
+                <td width="160" class="dato" align="center"><img  src="${entry.urlImagen}" /></td>
+                <td width="180" class="dato" align="center"><c:out value="${entry.titulo}" /></td>
+                <td width="35" class="dato" align="center"><c:out value="${entry.cantidad}" /></td>
+                <td width="20" class="dato" align="center"><c:out value="${entry.precio}" /></td>
+                <td width="20" class="dato" align="center"> <input type="radio" name="eliminar" value="${entry.idArticulo}"> </td>
+                </tr>
+            </c:otherwise>
+       </c:choose>
        </c:forEach>
 
      <tr>
      <td></td>
      <td></td>
-     <td width="160px" class="dato" align="right">IMPORTE TOTAL:</td>
-     <td width="160px" class="dato" align="center"><fmt:formatNumber maxFractionDigits="2" value="${cart.total}" /></td>
+     <td width="160" class="dato" align="right">IMPORTE TOTAL:</td>
+     <td width="160" class="dato" align="center"><fmt:formatNumber maxFractionDigits="2" value="${cart.total}" /></td>
      <td class="dato" align="center"><input type="submit" value="Eliminar"></td>
      </tr>
 

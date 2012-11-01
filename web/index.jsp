@@ -66,7 +66,7 @@
                 <td width="35" class="dato" align="center"><c:out value="${entry.idArticulo}" /></td>
                 <td width="180" class="dato" align="center"><a href="/ProyectoWI/classes/ControladorArticulo?accion=Select2&cd=${entry.titulo}"><c:out value="${entry.titulo}" /></a></td>
                 <td width="120" class="dato" align="center"><c:out value="${entry.autor}" /></td>
-                <td width="20" class="dato" align="center"><c:out value="${entry.precio}" /></td>
+                <td width="20" class="dato" align="center"><c:out value="2.0" /></td>
                 </tr>
             </c:when>
 

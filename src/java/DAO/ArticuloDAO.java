@@ -52,6 +52,8 @@ public interface ArticuloDAO {
 
     public DiscoVO obtenerArticuloID(int id);
 
+    public PeliculaVO obtenerArticuloID2(int id);
+    
     public ArrayList<String> comentarios(String IDART);
 
     public String user(String id);
