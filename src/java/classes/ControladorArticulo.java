@@ -171,7 +171,7 @@ public class ControladorArticulo extends HttpServlet {
                 Logger.getLogger(ControladorArticulo.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            DiscoDAO arti = new DiscoDAO();
+            PeliculaDAO arti = new PeliculaDAO();
 
 
             arti.guardarPago(carro, id);

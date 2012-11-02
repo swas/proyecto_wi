@@ -9,6 +9,7 @@ import classes.vo.DiscoVO;
 import classes.vo.busquedaArticuloVO;
 import java.sql.*;
 import classes.*;
+import classes.vo.ArticuloVO;
 import classes.vo.PeliculaVO;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -169,7 +170,7 @@ public class PeliculaDAO implements ArticuloDAO {
 
             while (it.hasNext()) {
 
-                DiscoVO e = (DiscoVO) it.next();
+                ArticuloVO e = (ArticuloVO) it.next();
 
                 float a = e.getPrecio() * e.getCantidad();
 
