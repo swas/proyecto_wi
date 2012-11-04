@@ -67,7 +67,7 @@
                     <p><select name="cantidad" size="1"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><input type="submit" value="Comprar"></p>
                </c:when>
                <c:otherwise>
-                    <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=registro">Registrese</a> o inicie sesi&oacute;n para comprar</p>
+                    <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=registro">Registrese</a> o <a href="/ProyectoWI/classes/ControladorUsuario?accion=login">inicie sesi&oacute;n</a> para comprar</p>
                </c:otherwise>
            </c:choose>
            </form>
@@ -96,7 +96,8 @@
          var uid = '${id}';
          
          if (!uid) {
-             $().colorbox({inline:true, href:"#inline_content", width:"50%",open:true});
+             $.colorbox({inline:true, href:"#inline_content", width:"50%",open:true});
+             ri.rateit('value',0);
              return false;
          }
          
@@ -165,7 +166,7 @@
          
 		<div style='display:none'>
 			<div id='inline_content' style='padding:10px; background:#fff;'>
-                        <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=registro">Registrese</a> o inicie sesi&oacute;n para puntuar</p>
+                            <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=registro">Registrese</a> o <a href="/ProyectoWI/classes/ControladorUsuario?accion=login">inicie sesi&oacute;n</a> para puntuar</p>
 			</div>
 		</div>        
          

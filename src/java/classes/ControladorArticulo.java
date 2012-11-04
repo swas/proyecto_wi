@@ -38,6 +38,7 @@ public class ControladorArticulo extends HttpServlet {
             throws ServletException, IOException {
         /*Llamado desde index.jsp para realizar la busqueda de CD's por criterios*/
 
+        request.setCharacterEncoding("UTF-8");
         DiscoDAO artdao = new DiscoDAO();
         ArticuloVO art = new DiscoVO();
         PeliculaDAO pdao = new PeliculaDAO();
@@ -110,6 +111,7 @@ public class ControladorArticulo extends HttpServlet {
         } else if (request.getParameter("accion").compareTo("Select2") == 0) {
 
             art2 = pdao.obtenerArticulo2(request.getParameter("cd"));
+            System.out.println("asraewraewraer: "+request.getParameter("cd"));
             int a = pdao.puedeComentar(art.getIdArticulo(), String.valueOf(session.getAttribute("id")));
             int puntuacion_user = pdao.getPuntuacionPorIDU(String.valueOf(session.getAttribute("id")), art2.getIdArticulo());
 
