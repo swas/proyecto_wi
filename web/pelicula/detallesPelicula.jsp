@@ -75,12 +75,12 @@
 
            <div class="star-box giga-star"> 
 
-               <div class="titlePageSprite star-box-giga-star">${art.puntuacion}</div>
+               <div class="starRat titlePageSprite star-box-giga-star">${art.puntuacion}</div>
                <div class="rating-box">
                    Tu puntuación: <div id="rateit" class="rateit" data-rateit-resetable="false" data-rateit-value="${puntuacion_user}" data-productid="${art.idArticulo}" data-rateit-step="1" data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="10"></div>                   
                </div> 
                 <div class="star-box-details">
-                Puntuaciones: <strong><span itemprop="ratingValue">${art.puntuacion}</span></strong><span class="mellow">/<span itemprop="bestRating">10</span></span> de <span itemprop="ratingCount">${art.n_puntaciones}</span> usuarios
+                Puntuaciones: <strong><span itemprop="ratingValue" class="starRat">${art.puntuacion}</span></strong><span class="mellow">/<span itemprop="bestRating">10</span></span> de <span itemprop="ratingCount" id="rat_users">${art.n_puntaciones}</span> usuarios
                 </div>               
                <div class="clear"></div>
            </div>           
@@ -113,7 +113,8 @@
              dataType: 'json',
              type: 'GET',
              success: function (data) {
-                 console.log(data);
+                 $('.starRat').text(data.puntuacion );
+                 $('#rat_users').text(data.n_puntuaciones );
              },
              error: function (jxhr, msg, err) {
                  console.log(msg, err);

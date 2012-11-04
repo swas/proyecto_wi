@@ -472,12 +472,48 @@ public class PeliculaDAO implements ArticuloDAO {
 
             ResultSet resultado = declaracion.executeQuery(query);
 
-            while (resultado.next()) {
+            resultado.next();
+            return this.obtenerArticuloID2(resultado.getInt("id"));
 
+   
+            
+            
+            
+            
+        } catch (Exception exc) {
+            System.out.println("Error buscarCDPorId-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+
+        }
+
+        return art;
+    }
+    
+    public DiscoVO obtenerArticuloID(int id){return null;}
+
+    public PeliculaVO obtenerArticuloID2(int id) {
+
+        PeliculaVO art = new PeliculaVO();
+
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+
+            String query = "SELECT * from movies WHERE id = '" + id + "'";
+
+            ResultSet resultado = declaracion.executeQuery(query);
+
+            while (resultado.next()) {
                 art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),"aaa",resultado.getInt("year"),"","pelicula");
                 art.setComentarios(this.comentarios(resultado.getString("id")));
-                
-                int id = resultado.getInt("id");
+                                
+                id = resultado.getInt("id");
                 
                 String query2 = "SELECT directorName FROM movie_directors WHERE movieID = '"+id+"'";
                 ResultSet resultado2 = declaracion.executeQuery(query2);
@@ -515,59 +551,8 @@ public class PeliculaDAO implements ArticuloDAO {
                 art.setPuntuacion(resultado2.getFloat("puntuacion"));
                 art.setN_puntaciones(resultado2.getInt("users")); 
                 
-                /*
-                HttpSession session = request.getSession(true);
-                String.valueOf(session.getAttribute("id"));
-                
-                query2 = "SELECT rating\n"
-                        + "FROM user_ratedmovies\n"
-                        + "WHERE userID = '" + idU + "' AND movieID = '" + id + "' ";
-
-
-                resultado2 = declaracion.executeQuery(query);
-
-                resultado.next();
-                resultado.getInt("rating");
-                */
                 
                 
-                
-            }   
-            
-            
-            
-        } catch (Exception exc) {
-            System.out.println("Error buscarCDPorId-> " + exc.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (java.sql.SQLException e) {
-                // Gestion de la excepcion...
-            }
-
-        }
-
-        return art;
-    }
-    
-    public DiscoVO obtenerArticuloID(int id){return null;}
-
-    public PeliculaVO obtenerArticuloID2(int id) {
-
-        PeliculaVO art = new PeliculaVO();
-
-        try {
-            testDriver();
-            con = obtenerConexion("localhost", "tienda");
-            Statement declaracion = con.createStatement();
-
-            String query = "SELECT * from movies WHERE id = '" + id + "'";
-
-            ResultSet resultado = declaracion.executeQuery(query);
-
-            while (resultado.next()) {
-                art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),"aaa",resultado.getInt("year"),"","pelicula");
-                art.setComentarios(this.comentarios(resultado.getString("id")));
             }
 
         } catch (Exception exc) {

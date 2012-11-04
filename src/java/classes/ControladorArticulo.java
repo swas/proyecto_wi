@@ -326,23 +326,23 @@ public class ControladorArticulo extends HttpServlet {
             Integer movieID = Integer.parseInt(request.getParameter("id"));
             Integer puntuacion = Integer.parseInt(request.getParameter("puntuacion"));
             
-            //response.setContentType("text/xml");
+    
             PrintWriter writer = response.getWriter();
             
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json; charset=UTF-8");            
             response.setHeader("Cache-Control", "no-cache");
             
-            //response.getWriter().write("<message>"+art+"</message>"); 
-            
-            
-            pdao.puntuar(String.valueOf(session.getAttribute("id")), movieID, puntuacion);
-            writer.print("{\"ret\":\""+String.valueOf(session.getAttribute("id"))+"\"}");
-            //Actualizar BD
-            
-            
 
-            //gotoPage("/admin/detallesCD.jsp", request, response);
+            
+            //Actualizar BD
+            pdao.puntuar(String.valueOf(session.getAttribute("id")), movieID, puntuacion);
+            
+            
+            // Respuesta JSON
+            PeliculaVO pelipuntuada = pdao.obtenerArticuloID2(movieID);
+            writer.print("{\"puntuacion\":\""+pelipuntuada.getPuntuacion()+"\", \"n_puntuaciones\":\""+pelipuntuada.getN_puntaciones()+"\"}");
+           
         }
 
 
