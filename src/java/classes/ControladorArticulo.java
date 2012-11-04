@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
+import javax.sound.midi.SysexMessage;
 import javax.swing.JOptionPane;
 
 /**
@@ -110,9 +111,11 @@ public class ControladorArticulo extends HttpServlet {
 
             art2 = pdao.obtenerArticulo2(request.getParameter("cd"));
             int a = pdao.puedeComentar(art.getIdArticulo(), String.valueOf(session.getAttribute("id")));
+            int puntuacion_user = pdao.getPuntuacionPorIDU(String.valueOf(session.getAttribute("id")), art2.getIdArticulo());
 
             request.setAttribute("articulo", art2);
             request.setAttribute("come", a);
+            request.setAttribute("puntuacion_user", puntuacion_user);
 
             gotoPage("/pelicula/detallesPelicula.jsp", request, response);
 
@@ -319,10 +322,22 @@ public class ControladorArticulo extends HttpServlet {
         
         
         } else if (request.getParameter("accion").compareTo("puntuar") == 0) {
-
-
-            art = artdao.obtenerArticuloID(Integer.parseInt(request.getParameter("id")));
+    
+            Integer movieID = Integer.parseInt(request.getParameter("id"));
             Integer puntuacion = Integer.parseInt(request.getParameter("puntuacion"));
+            
+            //response.setContentType("text/xml");
+            PrintWriter writer = response.getWriter();
+            
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/json; charset=UTF-8");            
+            response.setHeader("Cache-Control", "no-cache");
+            
+            //response.getWriter().write("<message>"+art+"</message>"); 
+            
+            
+            pdao.puntuar(String.valueOf(session.getAttribute("id")), movieID, puntuacion);
+            writer.print("{\"ret\":\""+String.valueOf(session.getAttribute("id"))+"\"}");
             //Actualizar BD
             
             

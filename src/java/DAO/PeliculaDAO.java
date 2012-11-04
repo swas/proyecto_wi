@@ -503,6 +503,35 @@ public class PeliculaDAO implements ArticuloDAO {
                     categorias.add(resultado4.getString("genre"));
                 }
                 art.setCategorias(categorias);
+                
+
+                query2 = "SELECT FORMAT(AVG(rating),1) as puntuacion , COUNT(*) as users\n"
+                        + "FROM user_ratedmovies\n"
+                        + "WHERE movieID = '"+id+"'";
+                
+                resultado2 = declaracion.executeQuery(query2);
+
+                resultado2.next();
+                art.setPuntuacion(resultado2.getFloat("puntuacion"));
+                art.setN_puntaciones(resultado2.getInt("users")); 
+                
+                /*
+                HttpSession session = request.getSession(true);
+                String.valueOf(session.getAttribute("id"));
+                
+                query2 = "SELECT rating\n"
+                        + "FROM user_ratedmovies\n"
+                        + "WHERE userID = '" + idU + "' AND movieID = '" + id + "' ";
+
+
+                resultado2 = declaracion.executeQuery(query);
+
+                resultado.next();
+                resultado.getInt("rating");
+                */
+                
+                
+                
             }   
             
             
@@ -1076,4 +1105,78 @@ public class PeliculaDAO implements ArticuloDAO {
 
 
     }
+    
+    
+    
+    public int getPuntuacionPorIDU(String idU, int movieID){
+        
+        
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+
+
+            String query = "SELECT rating\n"
+                    + "FROM user_ratedmovies\n"
+                    + "WHERE userID = '" + idU + "' AND movieID = '" + movieID + "' ";
+
+
+            ResultSet resultado = declaracion.executeQuery(query);
+
+                resultado.next();
+                return resultado.getInt("rating");
+ 
+       
+
+
+        } catch (Exception exc) {
+            System.out.println("Error buscarCDPorId-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+
+        }
+
+        return 0;    
+    
+        
+    }
+    
+    
+    public void puntuar(String idU, int movieID,int rating) {
+
+
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+
+
+
+          String query = "REPLACE INTO user_ratedmovies (`userID`,`movieID`,`rating`,`date_day`,`date_month`,`date_year`,`date_hour`,`date_minute`,`date_second`) "
+                    + "VALUES ('" + idU + "','" + movieID + "','" + rating + "',DATE_FORMAT(now(), '%e'), DATE_FORMAT(now(), '%m'), DATE_FORMAT(now(), '%Y'), DATE_FORMAT(now(), '%H'), DATE_FORMAT(now(), '%i'), DATE_FORMAT(now(), '%s'))";
+
+
+            declaracion.executeUpdate(query);
+
+
+
+        } catch (Exception exc) {
+            System.out.println("Error Puntuar-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+
+        }
+
+    }    
+ 
+    
 }

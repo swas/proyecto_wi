@@ -14,9 +14,11 @@
     <head>
       <title>Detalles</title>
       <link rel="stylesheet" href="/ProyectoWI/estilo.css" type="text/css"/>
-      <link rel="stylesheet" href="/ProyectoWI/rateit/rateit.css" type="text/css"/>
-      <script src="/ProyectoWI/rateit/jquery.js" type="text/javascript" charset="utf-8"></script>
-      <script src="/ProyectoWI/rateit/jquery.rateit.min.js" type="text/javascript" charset="utf-8"></script>
+      <link rel="stylesheet" href="/ProyectoWI/scripts/rateit/rateit.css" type="text/css"/>
+      <link rel="stylesheet" href="/ProyectoWI/scripts/colorbox/colorbox.css" type="text/css"/>
+      <script src="/ProyectoWI/scripts/jquery.js" type="text/javascript" charset="utf-8"></script>
+      <script src="/ProyectoWI/scripts/rateit/jquery.rateit.min.js" type="text/javascript" charset="utf-8"></script>
+      <script src="/ProyectoWI/scripts/colorbox/jquery.colorbox-min.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body bgcolor="#FDF5E6">
 
@@ -73,15 +75,12 @@
 
            <div class="star-box giga-star"> 
 
-               <div class="titlePageSprite star-box-giga-star">9.3</div>
+               <div class="titlePageSprite star-box-giga-star">${art.puntuacion}</div>
                <div class="rating-box">
-                   Tu puntuación: <div id="rateit" class="rateit" data-productid="${art.idArticulo}" data-rateit-step="1" data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="10"></div>                   
+                   Tu puntuación: <div id="rateit" class="rateit" data-rateit-resetable="false" data-rateit-value="${puntuacion_user}" data-productid="${art.idArticulo}" data-rateit-step="1" data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="10"></div>                   
                </div> 
                 <div class="star-box-details">
-                Puntuaciones: <strong><span itemprop="ratingValue">9.3</span></strong><span class="mellow">/<span itemprop="bestRating">10</span></span> de <a onclick="(new Image()).src='/rg/title-gigastar/votes/images/b.gif?link=ratings';" href="ratings" title="840,695 IMDb users have given an average vote of 9.3/10"><span itemprop="ratingCount">840,695</span> usuarios</a>
-                <br>Reviews: <a onclick="(new Image()).src='/rg/title-gigastar/user-reviews/images/b.gif?link=reviews';" href="reviews" title="2495 IMDb user reviews"><span itemprop="reviewCount">2,495</span> user</a> <span class="ghost">|</span> 
-                <a onclick="(new Image()).src='/rg/title-gigastar/external-reviews/images/b.gif?link=externalreviews';" href="externalreviews" title="155 external critic reviews"><span itemprop="reviewCount">155</span> critic</a> <span class="ghost">|</span> 
-                <a onclick="(new Image()).src='/rg/title-gigastar/critics-reviews/images/b.gif?link=criticreviews';" href="criticreviews" title="19 review excerpts provided by Metacritic.com">19</a> from <a onclick="(new Image()).src='/rg/title-gigastar/metacritic-link/images/b.gif?link=http%3A%2F%2Fwww.metacritic.com';" href="http://www.metacritic.com" target="_blank">Metacritic.com</a>
+                Puntuaciones: <strong><span itemprop="ratingValue">${art.puntuacion}</span></strong><span class="mellow">/<span itemprop="bestRating">10</span></span> de <span itemprop="ratingCount">${art.n_puntaciones}</span> usuarios
                 </div>               
                <div class="clear"></div>
            </div>           
@@ -94,6 +93,13 @@
      //we bind only to the rateit controls within the products div
      $('#rateit').bind('rated reset', function (e) {
          var ri = $(this);
+         var uid = '${id}';
+         
+         if (!uid) {
+             $().colorbox({inline:true, href:"#inline_content", width:"50%",open:true});
+             return false;
+         }
+         
          
 
          //if the use pressed reset, it will get value: 0 (to be compatible with the HTML range control), we could check if e.type == 'reset', and then set the value to  null .
@@ -103,7 +109,8 @@
 
          $.ajax({
              url: '/ProyectoWI/classes/ControladorArticulo',
-             data: { id: productID, puntuacion: value, accion: 'puntuar' },
+             data: { id: productID, puntuacion: value, accion: 'puntuar' ,uid: uid },
+             dataType: 'json',
              type: 'GET',
              success: function (data) {
                  console.log(data);
@@ -154,6 +161,13 @@
     </div>
 
     </div>
+         
+		<div style='display:none'>
+			<div id='inline_content' style='padding:10px; background:#fff;'>
+                        <p><a href="/ProyectoWI/classes/ControladorUsuario?accion=registro">Registrese</a> o inicie sesi&oacute;n para puntuar</p>
+			</div>
+		</div>        
+         
 
     </body>
 </html>
