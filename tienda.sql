@@ -1165,7 +1165,7 @@ INSERT INTO `tags` (`id`,`value`) VALUES
 
 DROP TABLE IF EXISTS `user_ratedmovies`;
 CREATE TABLE `user_ratedmovies` (
-  `userID` int(11) NOT NULL,
+  `userID` varchar(50) NOT NULL,
   `movieID` int(11) NOT NULL,
   `rating` int(11) DEFAULT NULL,
   `date_day` int(11) DEFAULT NULL,
