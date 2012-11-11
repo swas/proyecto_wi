@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -1161,7 +1162,99 @@ public class PeliculaDAO implements ArticuloDAO {
 
         }
 
+    }   
+    
+    
+    public HashMap<String, Map<String, Double>> getTaggedmovies() {
+        
+        HashMap<String, Map<String, Double>> critics = new HashMap<String, Map<String, Double>>();
+        
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+            
+            
+            String query = "SELECT movieID, tagID, COUNT(*) as n\n"
+                    + "FROM user_taggedmovies\n"
+                    + "GROUP BY movieID, tagID";
+            
+            ResultSet resultado = declaracion.executeQuery(query);
+            
+            
+            while (resultado.next()) {
+                if (!critics.containsKey(resultado.getString("movieID"))) {
+                    critics.put(resultado.getString("movieID"), new HashMap<String, Double>());
+                }
+                Map<String, Double> critic = critics.get(resultado.getString("movieID"));
+                critic.put(resultado.getString("tagID"), resultado.getDouble("n"));
+            }
+            
+            
+            /*for (Map.Entry entry : critics.entrySet()) {
+                System.out.println("KKey : " + entry.getKey() + " Value : "+ entry.getValue());
+            } */               
+            
+        } catch (Exception exc) {
+            System.out.println("Error getTaggedmovies-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+            
+        }
+        
+        
+        return critics;
+        
     }    
+    
  
+    public HashMap<String, Double> getUser_taggedmovies(String uid) {
+        
+        HashMap<String, Double> critic = new HashMap<String, Double>();
+        
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+            
+            
+            String query = "SELECT userID, tagID, COUNT(*)/100 as n\n"
+                    + "FROM user_taggedmovies\n"
+                    + "WHERE userID = '" + uid + "'\n"
+                    + "GROUP BY userID, tagID";
+            
+            ResultSet resultado = declaracion.executeQuery(query);
+            
+
+            while (resultado.next()) {
+                critic.put(resultado.getString("tagID"), resultado.getDouble("n"));
+            }
+            
+            
+            /*for (Map.Entry entry : critic.entrySet()) {
+                System.out.println("Key : " + entry.getKey() + " Value : "+ entry.getValue());
+            }  */              
+            
+        } catch (Exception exc) {
+            System.out.println("Error getUser_taggedmovies-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+            
+        }
+        
+        
+        return critic;
+        
+    }    
+    
+    
     
 }
