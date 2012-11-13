@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -473,38 +474,11 @@ public class PeliculaDAO implements ArticuloDAO {
 
             ResultSet resultado = declaracion.executeQuery(query);
 
-            while (resultado.next()) {
+            resultado.next();
+            return this.obtenerArticuloID2(resultado.getInt("id"));
 
-                art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),"aaa",resultado.getInt("year"),"","pelicula");
-                art.setComentarios(this.comentarios(resultado.getString("id")));
-                
-                int id = resultado.getInt("id");
-                
-                String query2 = "SELECT directorName FROM movie_directors WHERE movieID = '"+id+"'";
-                ResultSet resultado2 = declaracion.executeQuery(query2);
-
-                while (resultado2.next()) {
-                    art.setAutor(resultado2.getString("directorName"));
-                }
-                
-                String query3 = "SELECT actorName FROM movie_actors WHERE movieID = '"+id+"'";
-                ResultSet resultado3 = declaracion.executeQuery(query3);
-                ArrayList<String> actors = new ArrayList<String>();
-                
-                while (resultado3.next()) {
-                    actors.add(resultado3.getString("actorName"));
-                }
-                art.setActores(actors);
-                
-                String query4 = "SELECT genre FROM movie_genres WHERE movieID = '"+id+"'";
-                ResultSet resultado4= declaracion.executeQuery(query4);
-                ArrayList<String> categorias = new ArrayList<String>();
-                
-                while (resultado4.next()) {
-                    categorias.add(resultado4.getString("genre"));
-                }
-                art.setCategorias(categorias);
-            }   
+   
+            
             
             
             
@@ -540,6 +514,47 @@ public class PeliculaDAO implements ArticuloDAO {
             while (resultado.next()) {
                 art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),"aaa",resultado.getInt("year"),"","pelicula");
                 art.setComentarios(this.comentarios(resultado.getString("id")));
+                                
+                id = resultado.getInt("id");
+                
+                String query2 = "SELECT directorName FROM movie_directors WHERE movieID = '"+id+"'";
+                ResultSet resultado2 = declaracion.executeQuery(query2);
+
+                while (resultado2.next()) {
+                    art.setAutor(resultado2.getString("directorName"));
+                }
+                
+                String query3 = "SELECT actorName FROM movie_actors WHERE movieID = '"+id+"'";
+                ResultSet resultado3 = declaracion.executeQuery(query3);
+                ArrayList<String> actors = new ArrayList<String>();
+                
+                while (resultado3.next()) {
+                    actors.add(resultado3.getString("actorName"));
+                }
+                art.setActores(actors);
+                
+                String query4 = "SELECT genre FROM movie_genres WHERE movieID = '"+id+"'";
+                ResultSet resultado4= declaracion.executeQuery(query4);
+                ArrayList<String> categorias = new ArrayList<String>();
+                
+                while (resultado4.next()) {
+                    categorias.add(resultado4.getString("genre"));
+                }
+                art.setCategorias(categorias);
+                
+
+                query2 = "SELECT FORMAT(AVG(rating),1) as puntuacion , COUNT(*) as users\n"
+                        + "FROM user_ratedmovies\n"
+                        + "WHERE movieID = '"+id+"'";
+                
+                resultado2 = declaracion.executeQuery(query2);
+
+                resultado2.next();
+                art.setPuntuacion(resultado2.getFloat("puntuacion"));
+                art.setN_puntaciones(resultado2.getInt("users")); 
+                
+                
+                
             }
 
         } catch (Exception exc) {
@@ -1077,4 +1092,170 @@ public class PeliculaDAO implements ArticuloDAO {
 
 
     }
+    
+    
+    
+    public int getPuntuacionPorIDU(String idU, int movieID){
+        
+        
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+
+
+            String query = "SELECT rating\n"
+                    + "FROM user_ratedmovies\n"
+                    + "WHERE userID = '" + idU + "' AND movieID = '" + movieID + "' ";
+
+
+            ResultSet resultado = declaracion.executeQuery(query);
+
+                resultado.next();
+                return resultado.getInt("rating");
+ 
+       
+
+
+        } catch (Exception exc) {
+            System.out.println("Error buscarCDPorId-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+
+        }
+
+        return 0;    
+    
+        
+    }
+    
+    
+    public void puntuar(String idU, int movieID,int rating) {
+
+
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+
+
+
+          String query = "REPLACE INTO user_ratedmovies (`userID`,`movieID`,`rating`,`date_day`,`date_month`,`date_year`,`date_hour`,`date_minute`,`date_second`) "
+                    + "VALUES ('" + idU + "','" + movieID + "','" + rating + "',DATE_FORMAT(now(), '%e'), DATE_FORMAT(now(), '%m'), DATE_FORMAT(now(), '%Y'), DATE_FORMAT(now(), '%H'), DATE_FORMAT(now(), '%i'), DATE_FORMAT(now(), '%s'))";
+
+
+            declaracion.executeUpdate(query);
+
+
+
+        } catch (Exception exc) {
+            System.out.println("Error Puntuar-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+
+        }
+
+    }   
+    
+    
+    public HashMap<String, Map<String, Double>> getTaggedmovies() {
+        
+        HashMap<String, Map<String, Double>> critics = new HashMap<String, Map<String, Double>>();
+        
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+            
+            
+            String query = "SELECT movieID, tagID, COUNT(*) as n\n"
+                    + "FROM user_taggedmovies\n"
+                    + "GROUP BY movieID, tagID";
+            
+            ResultSet resultado = declaracion.executeQuery(query);
+            
+            
+            while (resultado.next()) {
+                if (!critics.containsKey(resultado.getString("movieID"))) {
+                    critics.put(resultado.getString("movieID"), new HashMap<String, Double>());
+                }
+                Map<String, Double> critic = critics.get(resultado.getString("movieID"));
+                critic.put(resultado.getString("tagID"), resultado.getDouble("n"));
+            }
+            
+            
+            /*for (Map.Entry entry : critics.entrySet()) {
+                System.out.println("KKey : " + entry.getKey() + " Value : "+ entry.getValue());
+            } */               
+            
+        } catch (Exception exc) {
+            System.out.println("Error getTaggedmovies-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+            
+        }
+        
+        
+        return critics;
+        
+    }    
+    
+ 
+    public HashMap<String, Double> getUser_taggedmovies(String uid) {
+        
+        HashMap<String, Double> critic = new HashMap<String, Double>();
+        
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+            
+            
+            String query = "SELECT userID, tagID, COUNT(*)/100 as n\n"
+                    + "FROM user_taggedmovies\n"
+                    + "WHERE userID = '" + uid + "'\n"
+                    + "GROUP BY userID, tagID";
+            
+            ResultSet resultado = declaracion.executeQuery(query);
+            
+
+            while (resultado.next()) {
+                critic.put(resultado.getString("tagID"), resultado.getDouble("n"));
+            }
+            
+            
+            /*for (Map.Entry entry : critic.entrySet()) {
+                System.out.println("Key : " + entry.getKey() + " Value : "+ entry.getValue());
+            }  */              
+            
+        } catch (Exception exc) {
+            System.out.println("Error getUser_taggedmovies-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+            
+        }
+        
+        
+        return critic;
+        
+    }    
+    
+    
+    
 }

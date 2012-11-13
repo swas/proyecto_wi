@@ -62,6 +62,45 @@ INSERT INTO `articulos` (`idArticulo`,`tituloCD`,`precio`,`cantidad`,`urlImagen`
 
 
 --
+-- Definition of table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE `usuario` (
+  `idUsuario` varchar(50) NOT NULL,
+  `correoElectronico` varchar(100) NOT NULL,
+  `pass` varchar(45) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `numTarjeta` varchar(45) NOT NULL,
+  `estado` int(10) unsigned NOT NULL,
+  `dni` varchar(9) NOT NULL,
+  `tipoUsuario` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`idUsuario`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `usuario`
+--
+
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` (`idUsuario`,`correoElectronico`,`pass`,`nombre`,`apellidos`,`direccion`,`telefono`,`numTarjeta`,`estado`,`dni`,`tipoUsuario`) VALUES 
+ ('A654237364','admin@gmail.com','admin','null','null','null','null','null',4,'null',4),
+ ('C123123123','p@p.com','p','p','p','w','123123123','1234123412341234',1,'12341234R',0),
+ ('C617819609','pablo.rock70@gmail.com','pablo','Pablo','Pico Barro','Rua Pelamios n17 portal 3 1M','617819609','1234567890123456',1,'44492314X',0),
+ ('C654323232','antoniodav.fornis@rai.usc.es','ricardo','Ricardo','Fuentes Fuentes','Calle del Sol','654323232','1234123412341234',2,'12345667P',0),
+ ('C666101010','pablo_rock70@hotmail.com','pepe','Pepe','Garcia Lopez','Santiago de Chile 23','666101010','1234123412341234',1,'32716453I',1),
+ ('C675849392','antoniodav.fornis@gmail.com','jose','Jose','Gomez Gomez','Rosalia de Castro','675849392','1234123412341234',2,'34343434I',0),
+ ('C675858585','antoniodav.fornis@hotmail.com','juan','Juan','Lopez Rodriguez','Santiago de Chile 105','675858585','1234123412341234',2,'12312356O',0),
+ ('C678878789','antoniodav.fornis@yahoo.com','antonio','Antonio','Pico Pico','Santiago de Chile','678878789','1234123412341234',2,'12312323J',0),
+ ('C685904923','pablo.rock70@hotmail.com','hector','Hector','Gonzalez Gonzalez','Rua do Horreo','685904923','1234123412341234',3,'34563456O',0),
+ ('C981891733','antoniodav.fornis@usc.es','pepe','antonio','Fornis','Calle Alcalde Lorenzo','981891733','1234567890123456',2,'44492314X',0);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+
+
+--
 -- Definition of table `comentarios`
 --
 
@@ -1126,15 +1165,16 @@ INSERT INTO `tags` (`id`,`value`) VALUES
 
 DROP TABLE IF EXISTS `user_ratedmovies`;
 CREATE TABLE `user_ratedmovies` (
-  `userID` int(11) DEFAULT NULL,
-  `movieID` int(11) DEFAULT NULL,
+  `userID` varchar(50) NOT NULL,
+  `movieID` int(11) NOT NULL,
   `rating` int(11) DEFAULT NULL,
   `date_day` int(11) DEFAULT NULL,
   `date_month` int(11) DEFAULT NULL,
   `date_year` int(11) DEFAULT NULL,
   `date_hour` int(11) DEFAULT NULL,
   `date_minute` int(11) DEFAULT NULL,
-  `date_second` float DEFAULT NULL
+  `date_second` float DEFAULT NULL,
+   PRIMARY KEY (`userID`,`movieID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1410,45 +1450,6 @@ CREATE TABLE `user_taggedmovies_timestamps` (
 
 /*!40000 ALTER TABLE `user_taggedmovies_timestamps` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_taggedmovies_timestamps` ENABLE KEYS */;
-
-
---
--- Definition of table `usuario`
---
-
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE `usuario` (
-  `idUsuario` varchar(50) NOT NULL,
-  `correoElectronico` varchar(100) NOT NULL,
-  `pass` varchar(45) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellidos` varchar(45) NOT NULL,
-  `direccion` varchar(100) NOT NULL,
-  `telefono` varchar(45) NOT NULL,
-  `numTarjeta` varchar(45) NOT NULL,
-  `estado` int(10) unsigned NOT NULL,
-  `dni` varchar(9) NOT NULL,
-  `tipoUsuario` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`idUsuario`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `usuario`
---
-
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` (`idUsuario`,`correoElectronico`,`pass`,`nombre`,`apellidos`,`direccion`,`telefono`,`numTarjeta`,`estado`,`dni`,`tipoUsuario`) VALUES 
- ('A654237364','admin@gmail.com','admin','null','null','null','null','null',4,'null',4),
- ('C123123123','p@p.com','p','p','p','w','123123123','1234123412341234',1,'12341234R',0),
- ('C617819609','pablo.rock70@gmail.com','pablo','Pablo','Pico Barro','Rua Pelamios n17 portal 3 1M','617819609','1234567890123456',1,'44492314X',0),
- ('C654323232','antoniodav.fornis@rai.usc.es','ricardo','Ricardo','Fuentes Fuentes','Calle del Sol','654323232','1234123412341234',2,'12345667P',0),
- ('C666101010','pablo_rock70@hotmail.com','pepe','Pepe','Garcia Lopez','Santiago de Chile 23','666101010','1234123412341234',1,'32716453I',1),
- ('C675849392','antoniodav.fornis@gmail.com','jose','Jose','Gomez Gomez','Rosalia de Castro','675849392','1234123412341234',2,'34343434I',0),
- ('C675858585','antoniodav.fornis@hotmail.com','juan','Juan','Lopez Rodriguez','Santiago de Chile 105','675858585','1234123412341234',2,'12312356O',0),
- ('C678878789','antoniodav.fornis@yahoo.com','antonio','Antonio','Pico Pico','Santiago de Chile','678878789','1234123412341234',2,'12312323J',0),
- ('C685904923','pablo.rock70@hotmail.com','hector','Hector','Gonzalez Gonzalez','Rua do Horreo','685904923','1234123412341234',3,'34563456O',0),
- ('C981891733','antoniodav.fornis@usc.es','pepe','antonio','Fornis','Calle Alcalde Lorenzo','981891733','1234567890123456',2,'44492314X',0);
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 
 

@@ -20,6 +20,9 @@ private String categoria;
 private int anho;
 private String autor;
 private String tipo;
+private float puntuacion = 0;
+private int n_puntaciones;
+
 
 
     public PeliculaVO(String titulo, int idArticulo, float precio, int cantidad, String urlImagen, String categoria, int anho, String autor,String tipo) {
@@ -141,6 +144,23 @@ private String tipo;
     public void setActores(ArrayList<String> actores) {
         this.actores = actores;
     }
+
+    public float getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(float puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+
+    public int getN_puntaciones() {
+        return n_puntaciones;
+    }
+
+    public void setN_puntaciones(int n_puntaciones) {
+        this.n_puntaciones = n_puntaciones;
+    }
+
 
     
     }

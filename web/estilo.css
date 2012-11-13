@@ -568,6 +568,10 @@ border: none;
 }
 
 
+.rating-box{
+    padding-top: 15px;
+}
+
 .clear {
 clear: both;
 }
