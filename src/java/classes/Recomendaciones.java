@@ -125,7 +125,10 @@ public class Recomendaciones {
             }
         }
 
-
+        System.out.println(pelis_recomendadas.get(0).getTitulo());
+        System.out.println(pelis_recomendadas.get(0).getCategoria());
+        System.out.println(pelis_recomendadas.get(1).getTitulo());
+        System.out.println(pelis_recomendadas.get(2).getTitulo());
         return pelis_recomendadas;
     }
 }

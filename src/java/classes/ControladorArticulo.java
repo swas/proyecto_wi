@@ -55,7 +55,7 @@ public class ControladorArticulo extends HttpServlet {
         request.setAttribute("autorBUS", autorBUS);
         request.setAttribute("precioBUS", precioBUS);
         request.setAttribute("anhoBUS", anhoBUS);
-        
+
         // Recomendaciones de usuario
         //Recomendaciones r = new Recomendaciones(String.valueOf(session.getAttribute("id")));
         Recomendaciones r = new Recomendaciones("127");

@@ -10,7 +10,10 @@ import classes.vo.ShoppingCart;
 import classes.vo.busquedaUsuarioVO;
 import classes.vo.Usuario;
 import DAO.UsuarioDAO;
+import classes.vo.PeliculaVO;
+import classes.vo.busquedaArticuloVO;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
@@ -75,6 +78,21 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
                     if (usu.getIdUsuario().contains("C")){
                     ShoppingCart cart =new ShoppingCart();
                     session.setAttribute("cart", cart);
+                    
+                    /* RECOMENDACION 1*/
+                    
+                    busquedaArticuloVO catalogo = new busquedaArticuloVO();                   
+                    Recomendaciones r = new Recomendaciones("127");
+                    ArrayList<PeliculaVO> arts = r.RecomendadorFiltradoPorContenido(3);
+                    
+                    for(int x=0;x<arts.size();x++){
+                        catalogo.anhadir2(arts.get(x).getIdArticulo(), arts.get(x));
+                    }
+          
+                    request.setAttribute("cata", catalogo);
+                    
+                    /****/
+                    
                     gotoPage("/index.jsp", request, response);
 
                     }

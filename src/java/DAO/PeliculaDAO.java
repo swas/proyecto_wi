@@ -508,7 +508,7 @@ public class PeliculaDAO implements ArticuloDAO {
             Statement declaracion = con.createStatement();
 
             String query = "SELECT * from movies WHERE id = '" + id + "'";
-
+            
             ResultSet resultado = declaracion.executeQuery(query);
 
             while (resultado.next()) {
@@ -691,12 +691,18 @@ public class PeliculaDAO implements ArticuloDAO {
             testDriver();
             con = obtenerConexion("localhost", "tienda");
             Statement declaracion = con.createStatement();
-
-            String query = "SELECT * from movies WHERE id IN (SELECT movieID FROM movie_genres WHERE genre = '" + Categoria + "')";
+            
+            String query;
+            
+            if(Categoria.equals("aaa")){
+                query = "SELECT * from movies WHERE id NOT IN (SELECT movieID FROM movie_genres)"; 
+            } else{
+                query = "SELECT * from movies WHERE id IN (SELECT movieID FROM movie_genres WHERE genre = '" + Categoria + "')";  
+            }
 
             ResultSet resultado = declaracion.executeQuery(query);
 
-            ArrayList<PeliculaVO> arts = new ArrayList<PeliculaVO>();
+            ArrayList<PeliculaVO> arts = new ArrayList<PeliculaVO>(); 
                        
             while (resultado.next()) {              
                 PeliculaVO art = new PeliculaVO(resultado.getString("spanishTitle"),resultado.getInt("id"),2,10,resultado.getString("imdbPictureURL"),Categoria,resultado.getInt("year"),"","pelicula");
