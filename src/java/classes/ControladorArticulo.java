@@ -58,8 +58,8 @@ public class ControladorArticulo extends HttpServlet {
 
         // Recomendaciones de usuario
         //Recomendaciones r = new Recomendaciones(String.valueOf(session.getAttribute("id")));
-        Recomendaciones r = new Recomendaciones("127");
-        r.RecomendadorFiltradoPorContenido(3);
+       // Recomendaciones r = new Recomendaciones("127");
+        //r.RecomendadorFiltradoPorContenido(3);
 
         if (request.getParameter("accion").compareTo("Catalogo") == 0) {
 

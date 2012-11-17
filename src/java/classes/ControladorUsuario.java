@@ -16,17 +16,30 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import javax.sql.DataSource;
 
 import javax.swing.JOptionPane;
+import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.impl.model.jdbc.PostgreSQLJDBCDataModel;
+import org.apache.mahout.cf.taste.impl.similarity.LogLikelihoodSimilarity;
+import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
+import org.apache.mahout.cf.taste.impl.similarity.TanimotoCoefficientSimilarity;
+import org.apache.mahout.cf.taste.model.DataModel;
+import org.apache.mahout.cf.taste.similarity.ItemSimilarity;
+import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 /**
  *
  * @author Sony Vaio
  */
 public class ControladorUsuario extends HttpServlet  {
 
-
+    private @Resource (name="jdbc/taste",
+            			lookup="jdbc/taste",
+            			authenticationType=Resource.AuthenticationType.CONTAINER,
+            			shareable=false) DataSource tasteDS;   
 private void gotoPage (String adress, HttpServletRequest request,HttpServletResponse response)
         throws ServletException,IOException{
 
@@ -79,11 +92,41 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
                     ShoppingCart cart =new ShoppingCart();
                     session.setAttribute("cart", cart);
                     
-                    /* RECOMENDACION 1*/
+                    /* RECOMENDACIONES  */
+                    /**** PARTE DE LAS RECOMENDACIONES!!!! AQUÍ!!!****/
+                    /**
+                     * 
+                     * 
+                     * 
+                     * 
+                     * 
+                     * 
+                     * AQUÍ! AQUÍ! RECOMENDACIONES AQUÍ!
+                     * 
+                     * 
+                     * 
+                     * 
+                     * 
+                     * 
+                     * 
+                     */
+                    busquedaArticuloVO catalogo = new busquedaArticuloVO();     
+                    DataModel dataModel= new PostgreSQLJDBCDataModel(tasteDS, "TIENDA.USER_RATEDMOVIES", "USERID", "MOVIEID", "RATING", null);
+                    ItemSimilarity itemSim = new LogLikelihoodSimilarity(dataModel);
+                    UserSimilarity userSim= new LogLikelihoodSimilarity(dataModel);
+                    /*    userSim = new PearsonCorrelationSimilarity(dataModel);
+                        itemSim = new PearsonCorrelationSimilarity(dataModel);
+                        userSim = new TanimotoCoefficientSimilarity(dataModel);
+                        itemSim = new TanimotoCoefficientSimilarity(dataModel);*/
+                   
                     
-                    busquedaArticuloVO catalogo = new busquedaArticuloVO();                   
-                    Recomendaciones r = new Recomendaciones("127");
-                    ArrayList<PeliculaVO> arts = r.RecomendadorFiltradoPorContenido(3);
+
+                    Recomendaciones r = new Recomendaciones("75", userSim, itemSim, dataModel);
+                    //ArrayList<PeliculaVO> arts = r.recomenderUserBased(3);
+                    //ArrayList<PeliculaVO> arts = r.recomenderItemBased(3);
+                    ArrayList<PeliculaVO> arts =r.RecomendadorFiltradoPorContenido(3);
+                   // ArrayList<PeliculaVO> arts = r.recomenderSlopeOne(3);
+                    
                     
                     for(int x=0;x<arts.size();x++){
                         catalogo.anhadir2(arts.get(x).getIdArticulo(), arts.get(x));
