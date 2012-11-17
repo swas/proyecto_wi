@@ -84,6 +84,7 @@ public class Recomendaciones {
             UserNeighborhood neighborhood = new NearestNUserNeighborhood(5, userSim, dataModel);
             Recommender recommender = new GenericUserBasedRecommender(dataModel, neighborhood, userSim);
             List<RecommendedItem> list = recommender.recommend(uid, numRecomendaciones);
+            //UserBasedEvaluacion(dataModel);
             Iterator<RecommendedItem> iter = list.iterator();
             while (iter.hasNext()) {
                 RecommendedItem item = iter.next();
@@ -97,6 +98,21 @@ public class Recomendaciones {
             return null;
         }
     }
+    
+    public void UserBasedEvaluacion(DataModel model) throws TasteException {
+        RandomUtils.useTestSeed();
+        RecommenderEvaluator evaluator = new RMSRecommenderEvaluator(); //
+        // Build the same recommender for testing that we did last time:
+        RecommenderBuilder recommenderBuilder = new RecommenderBuilder() {
+            public Recommender buildRecommender(DataModel model) throws TasteException {
+                UserNeighborhood neighborhood = new NearestNUserNeighborhood(5, userSim, dataModel);
+                return new GenericUserBasedRecommender(dataModel, neighborhood, userSim);
+            }
+        };
+        double score = evaluator.evaluate(recommenderBuilder, null, model, test, total);
+        System.out.println(score);
+    }
+    
 
     public ArrayList<PeliculaVO> recomenderItemBased(int numRecomendaciones) {
 
@@ -105,6 +121,7 @@ public class Recomendaciones {
             Recommender recommender = new GenericItemBasedRecommender(dataModel, itemSim);
             List<RecommendedItem> list = recommender.recommend(uid, numRecomendaciones);
             Iterator<RecommendedItem> iter = list.iterator();
+            //ItemBasedEvaluacion(dataModel);
             while (iter.hasNext()) {
                 RecommendedItem item = iter.next();
                 System.out.println("Pelicula: " + item.getItemID());
@@ -138,6 +155,7 @@ public class Recomendaciones {
             DiffStorage diffStorage = new MemoryDiffStorage(dataModel, Weighting.UNWEIGHTED, 1000000L);
             Recommender recommender = new SlopeOneRecommender(dataModel, Weighting.UNWEIGHTED, Weighting.UNWEIGHTED, diffStorage);
             List<RecommendedItem> list = recommender.recommend(uid, numRecomendaciones);
+            //SlopeOneEvaluacion(dataModel);
             Iterator<RecommendedItem> iter = list.iterator();
             while (iter.hasNext()) {
                 RecommendedItem item = iter.next();
