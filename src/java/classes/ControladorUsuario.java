@@ -88,7 +88,7 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
                 }
                 if(usu!=null){
                     session.setAttribute("id", usu.getIdUsuario());
-                    if (usu.getIdUsuario().contains("C")){
+                    if (!usu.getIdUsuario().contains("A")){
                     ShoppingCart cart =new ShoppingCart();
                     session.setAttribute("cart", cart);
                     
@@ -121,11 +121,11 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
                    
                     
 
-                    Recomendaciones r = new Recomendaciones("75", userSim, itemSim, dataModel);
+                    Recomendaciones r = new Recomendaciones(usu.getIdUsuario(), userSim, itemSim, dataModel);
                     //ArrayList<PeliculaVO> arts = r.recomenderUserBased(3);
-                    //ArrayList<PeliculaVO> arts = r.recomenderItemBased(3);
+                    //ArrayList<PeliculaVO> arts2 = r.recomenderItemBased(3);
                     ArrayList<PeliculaVO> arts =r.RecomendadorFiltradoPorContenido(3);
-                   // ArrayList<PeliculaVO> arts = r.recomenderSlopeOne(3);
+                    //ArrayList<PeliculaVO> arts4 = r.recomenderSlopeOne(3);
                     
                     
                     for(int x=0;x<arts.size();x++){
