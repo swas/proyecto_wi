@@ -27,8 +27,7 @@
 <div class="centro">
 
 	<%@include file="/admin/seccionMenuArticulo.jsp"%>
-    
-        <%@include file="/comun/seccionLogin.jsp"%>
+            
         
 <div class="catalog">
    <center><table style="width:550px;">
@@ -57,6 +56,9 @@
                     
         </table>
   </div>
+        
+        <%@include file="/comun/seccionLogin.jsp"%>
+        
 </div>
     </body>
 </html>

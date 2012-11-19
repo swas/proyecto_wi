@@ -17,10 +17,6 @@
         <ul>
                 <c:set var="variable" value="A" />
 
-
-
-
-
                 <c:if test="${fn:contains(id, variable)}">
 
                 <li><p>Opciones</p></li>
@@ -31,16 +27,13 @@
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=AnhadirPelicula">Añadir Pelicula</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorUsuario?accion=PerfilAdmin">Editar Perfil</a></li>
 
-                   </c:if>
+                </c:if>
                 <li><p>Categorias</p></li>
                 <li><a href="/ProyectoWI/classes/ControladorUsuario?accion=UsuariosRegistrados">Clientes Registrados</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorUsuario?accion=UsuariosNoRegistrados">Clientes Pendientes</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorUsuario?accion=UsuariosDadosDeBaja">Clientes Dados de Baja</a></li>
 
-
-
         </ul>
-
 
 </div>
 </html>

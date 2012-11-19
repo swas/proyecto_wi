@@ -8,15 +8,12 @@ import classes.vo.ShoppingCart;
 import classes.vo.DiscoVO;
 import classes.vo.busquedaArticuloVO;
 import java.sql.*;
-import classes.*;
 import classes.vo.ArticuloVO;
 import classes.vo.PeliculaVO;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -423,16 +420,14 @@ public class PeliculaDAO implements ArticuloDAO {
             con = obtenerConexion("localhost", "tienda");
             Statement declaracion = con.createStatement();
 
-            String query = "SELECT * FROM articulos ORDER BY idArticulo DESC LIMIT 5";
+            String query = "SELECT * FROM movies ORDER BY id DESC LIMIT 5";
 
             ResultSet resultado = declaracion.executeQuery(query);
 
             while (resultado.next()) {
 
-                DiscoVO art = new DiscoVO(resultado.getString("tituloCD"), resultado.getInt("idArticulo"),
-                        resultado.getFloat("precio"), resultado.getInt("cantidad"), resultado.getString("urlImagen"), resultado.getString("categoria"), resultado.getInt("anho"), resultado.getString("autor"),"pelicula");
-
-                catalogo.anhadir(art.getIdArticulo(), art);
+                PeliculaVO art = obtenerArticuloID2(resultado.getInt("id"));                       
+                catalogo.anhadir2(art.getIdArticulo(), art);
 
             }
 
@@ -1260,8 +1255,60 @@ public class PeliculaDAO implements ArticuloDAO {
         
         return critic;
         
-    }    
+    }        
     
+    public void insertarAlgoritmo(String algoritmo,String distanciaU,String distanciaI) {
+
+
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();
+
+            String query = "UPDATE algoritmos SET titulo='" + algoritmo + "',distanciaU='" + distanciaU + "',distanciaI='" + distanciaI + "' where id='1' ";
+            declaracion.executeUpdate(query);
+        } catch (Exception exc) {
+            System.out.println("Error Modificar-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+        }
+    }
+
     
-    
+    public ArrayList<String> seleccionarAlgoritmo() {
+
+        ArrayList <String> u = new ArrayList<String>();
+        
+        try {
+            testDriver();
+            con = obtenerConexion("localhost", "tienda");
+            Statement declaracion = con.createStatement();   
+            
+            String query = "SELECT titulo,distanciaU,distanciaI FROM algoritmos where id='1'";
+            ResultSet resultado = declaracion.executeQuery(query);
+            
+            while (resultado.next()) {
+
+                u.add(resultado.getString("titulo"));
+                u.add(resultado.getString("distanciaU"));
+                u.add(resultado.getString("distanciaI"));                        
+                
+            }                              
+            
+        } catch (Exception exc) {
+            System.out.println("Error Modificar-> " + exc.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                // Gestion de la excepcion...
+            }
+        }  
+        
+        return u;
+    }
 }

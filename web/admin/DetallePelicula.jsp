@@ -1,4 +1,5 @@
 <%-- 
+<%--
     Document   : DetallePelicula
     Created on : 24-oct-2012, 1:57:07
     Author     : Pablo
@@ -29,8 +30,7 @@
 <div class="centro">
     
    <%@include file="/admin/seccionMenuArticulo.jsp"%>
-      
-   <%@include file="/comun/seccionLogin.jsp"%>
+        
    
     <div class="catalog">
    <center><table style="width:550px;">
@@ -224,7 +224,7 @@
 </td></tr></TABLE>
          
   </div>
-
+<%@include file="/comun/seccionLogin.jsp"%>
 </div>
     </body>
 </html>

@@ -32,9 +32,7 @@
 
 <div class="centro">
 
-    <%@include file="/comun/seccionMenuPrincipal.jsp"%>
-        
-    <%@include file="/comun/seccionLogin.jsp"%>
+    <%@include file="/comun/seccionMenuPrincipal.jsp"%>           
           
     <div class="catalog">
 
@@ -86,7 +84,7 @@
       </table></center>
      </form>
     </div>
-          
+          <%@include file="/comun/seccionLogin.jsp"%>
     </div>
 
     </body>

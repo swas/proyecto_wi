@@ -6,6 +6,7 @@
 package classes;
 
 
+import DAO.PeliculaDAO;
 import classes.vo.ShoppingCart;
 import classes.vo.busquedaUsuarioVO;
 import classes.vo.Usuario;
@@ -92,6 +93,10 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
                     ShoppingCart cart =new ShoppingCart();
                     session.setAttribute("cart", cart);
                     
+                    PeliculaDAO p = new PeliculaDAO();
+                    ArrayList<String> a = new ArrayList<String>();
+                    a = p.seleccionarAlgoritmo();
+                    
                     /* RECOMENDACIONES  */
                     /**** PARTE DE LAS RECOMENDACIONES!!!! AQUÍ!!!****/
                     /**
@@ -112,29 +117,63 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
                      */
                     busquedaArticuloVO catalogo = new busquedaArticuloVO();     
                     DataModel dataModel= new PostgreSQLJDBCDataModel(tasteDS, "TIENDA.USER_RATEDMOVIES", "USERID", "MOVIEID", "RATING", null);
-                    ItemSimilarity itemSim = new LogLikelihoodSimilarity(dataModel);
-                    UserSimilarity userSim= new LogLikelihoodSimilarity(dataModel);
-                    /*    userSim = new PearsonCorrelationSimilarity(dataModel);
-                        itemSim = new PearsonCorrelationSimilarity(dataModel);
-                        userSim = new TanimotoCoefficientSimilarity(dataModel);
-                        itemSim = new TanimotoCoefficientSimilarity(dataModel);*/
-                   
+                    ItemSimilarity itemSim = null;
+                    UserSimilarity userSim = null;
                     
+                    if(a.get(1).equalsIgnoreCase("tanimoto")){
+                        userSim = new TanimotoCoefficientSimilarity(dataModel);
+                    }
+                    else if(a.get(1).equalsIgnoreCase("pearson")){
+                        try {
+                            userSim = new PearsonCorrelationSimilarity(dataModel);
+                        } catch (TasteException ex) {
+                            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    else if(a.get(1).equalsIgnoreCase("loglikelihood")){
+                        userSim = new LogLikelihoodSimilarity(dataModel);
+                    }
+                    else if(a.get(1).equalsIgnoreCase("spearman")){
+                        
+                    }
+                    
+                    if(a.get(2).equalsIgnoreCase("tanimoto")){
+                        itemSim = new TanimotoCoefficientSimilarity(dataModel);
+                    }
+                    else if(a.get(2).equalsIgnoreCase("pearson")){
+                        try {
+                            itemSim = new PearsonCorrelationSimilarity(dataModel);
+                        } catch (TasteException ex) {
+                            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    else if(a.get(2).equalsIgnoreCase("loglikelihood")){
+                        itemSim = new LogLikelihoodSimilarity(dataModel);
+                    }                                                           
 
                     Recomendaciones r = new Recomendaciones(usu.getIdUsuario(), userSim, itemSim, dataModel);
-                    //ArrayList<PeliculaVO> arts = r.recomenderUserBased(3);
-                    //ArrayList<PeliculaVO> arts2 = r.recomenderItemBased(3);
-                    ArrayList<PeliculaVO> arts =r.RecomendadorFiltradoPorContenido(3);
-                    //ArrayList<PeliculaVO> arts4 = r.recomenderSlopeOne(3);
+                    
+                    ArrayList<PeliculaVO> arts = new ArrayList<PeliculaVO>();
+                    
+                    if(a.get(0).equalsIgnoreCase("filtrado")){
+                        arts =r.RecomendadorFiltradoPorContenido(3);
+                    }
+                    else if(a.get(0).equalsIgnoreCase("user")){
+                        arts = r.recomenderUserBased(3);
+                    }
+                    else if(a.get(0).equalsIgnoreCase("item")){
+                        arts = r.recomenderItemBased(3);
+                    }
+                    else if(a.get(0).equalsIgnoreCase("slope")){
+                        arts = r.recomenderSlopeOne(3);
+                    }
                     
                     
                     for(int x=0;x<arts.size();x++){
                         catalogo.anhadir2(arts.get(x).getIdArticulo(), arts.get(x));
                     }
           
-                    request.setAttribute("cata", catalogo);
-                    
-                    /****/
+                    request.setAttribute("cata", catalogo);                   
                     
                     gotoPage("/index.jsp", request, response);
 

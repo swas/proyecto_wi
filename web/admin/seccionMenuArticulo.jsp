@@ -14,12 +14,8 @@
     <div id="menuadminTotal">
   <div id="menuadmin">
         <ul>
-                    <c:set var="variable" value="A" />
+                <c:set var="variable" value="A" />
                   
-
-
-
-
                 <c:if test="${fn:contains(id, variable)}">
 
                 <li><p>Opciones</p></li>
@@ -28,14 +24,13 @@
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=AnhadirArticulo">Añadir CD</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=AnhadirPelicula">Añadir Pelicula</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorUsuario?accion=PerfilAdmin">Editar Perfil</a></li>
-
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Algoritmos">Algoritmos</a></li>
 
                 </c:if>                
-
 
         </ul>
                         
 </div>
-                    <%@include file="/comun/seccionMenuPrincipal.jsp"%> 
+        <%@include file="/comun/seccionMenuPrincipal.jsp"%> 
   </div>             
 </html>

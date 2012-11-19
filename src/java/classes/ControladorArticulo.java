@@ -207,9 +207,9 @@ public class ControladorArticulo extends HttpServlet {
 
             gotoPage("/cd/detallesCD.jsp", request, response);
 
-        } else if (request.getParameter("accion").compareTo("Destacados") == 0) {
+        } else if (request.getParameter("accion").compareTo("Destacados") == 0) {                        
 
-            DiscoDAO arti = new DiscoDAO();
+            PeliculaDAO arti = new PeliculaDAO();
             busquedaArticuloVO bus = new busquedaArticuloVO();
 
             bus = arti.ultimos5();
@@ -217,6 +217,17 @@ public class ControladorArticulo extends HttpServlet {
             request.setAttribute("cata", bus);
 
             gotoPage("/index.jsp", request, response);
+            
+        } else if (request.getParameter("accion").compareTo("Algoritmos") == 0) {                        
+
+            gotoPage("/admin/seccionAlgoritmos.jsp", request, response);
+            
+        } else if (request.getParameter("accion").compareTo("seleccionAlgoritmos") == 0) {                 
+            
+            PeliculaDAO arti = new PeliculaDAO();
+            arti.insertarAlgoritmo(request.getParameter("algoritmo"), request.getParameter("distanciaU"), request.getParameter("distanciaI"));                       
+
+            gotoPage("/admin/seccionAlgoritmos.jsp", request, response);
 
         } else if (request.getParameter("accion").compareTo("BusquedaCategoria") == 0) {
 

@@ -57,7 +57,7 @@ body {
 }
 
 .centro{
-    width: 950px;
+    width: 1000px;
     top: 0px;
     margin-left: auto;
     margin-right: auto;
@@ -72,7 +72,7 @@ body {
 }
 
 .catalogo{
-    width: 650px;
+    width: 600px;
     height: 450px;
     text-align: center;
     float: left;
@@ -83,14 +83,14 @@ body {
     width: 600px;
     height: 500px;
     text-align: center;
-    float: center;
+    float: left;
     overflow: auto;    
 }
 
 .login{
     
     width: 100px;    
-    float: right;
+    float: left;
     border: 1px solid black;
     border-width: 1px 1px 1px 1px;
     text-align:	center;

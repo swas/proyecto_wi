@@ -33,9 +33,7 @@
 
       <div class="centro">
 
-        <%@include file="/comun/seccionMenuPrincipal.jsp"%>
-        
-        <%@include file="/comun/seccionLogin.jsp"%>
+        <%@include file="/comun/seccionMenuPrincipal.jsp"%>               
 
     <div class="catalog">
         
@@ -92,7 +90,7 @@
            </c:forEach>
         
     </div>
-
+<%@include file="/comun/seccionLogin.jsp"%>
     </div>
 
     </body>
