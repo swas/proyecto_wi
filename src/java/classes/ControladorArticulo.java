@@ -3,6 +3,7 @@ package classes;
 import classes.vo.*;
 import DAO.DiscoDAO;
 import DAO.PeliculaDAO;
+import DAO.UsuarioDAO;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -361,6 +362,17 @@ public class ControladorArticulo extends HttpServlet {
             PeliculaVO pelipuntuada = pdao.obtenerArticuloID2(movieID);
             writer.print("{\"puntuacion\":\""+pelipuntuada.getPuntuacion()+"\", \"n_puntuaciones\":\""+pelipuntuada.getN_puntaciones()+"\"}");
            
+        } else if (request.getParameter("accion").compareTo("VerValoracionesPelicula") == 0) {
+            gotoPage("/admin/seccionValoracionesPelicula.jsp", request, response);
+        } else if (request.getParameter("accion").compareTo("VerValoracionesUsuario") == 0) {
+            
+            busquedaUsuarioVO usuvo=new busquedaUsuarioVO();
+            UsuarioDAO usudao=new UsuarioDAO();
+            
+            usuvo=usudao.obtenerClientesRegistrados();
+            session.setAttribute("usuarios",usuvo);
+        
+            gotoPage("/admin/seccionValoracionesUsuario.jsp", request, response);
         }
 
 

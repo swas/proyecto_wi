@@ -38,7 +38,7 @@ import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 public class ControladorUsuario extends HttpServlet  {
 
     private @Resource (name="jdbc/taste",
-            			lookup="jdbc/taste",
+            			//lookup="jdbc/taste",
             			authenticationType=Resource.AuthenticationType.CONTAINER,
             			shareable=false) DataSource tasteDS;   
 private void gotoPage (String adress, HttpServletRequest request,HttpServletResponse response)
@@ -567,15 +567,23 @@ private void gotoPage (String adress, HttpServletRequest request,HttpServletResp
          else if (request.getParameter("tipo").compareTo("2")==0){
 
         gotoPage("/admin/DatosUsuario.jsp?tipo=noRegistrado", request, response);
-        }
+        } 
          else{
 
          gotoPage("/admin/DatosUsuario.jsp?tipo=Baja", request, response);
 
-         }
+         } 
 
 
 
+    } else if(request.getParameter("accion").compareTo("VerValoracionesUs")==0){
+        ArrayList<String> v = usudao.obtenerValoraciones(request.getParameter("idUsuario"));
+        session.setAttribute("ValUsu",v );
+        gotoPage("/admin/valoraciones.jsp", request, response);
+    } else if(request.getParameter("accion").compareTo("VerValoracionesPel")==0){
+        ArrayList<String> v = usudao.obtenerValoracionesPel(request.getParameter("pelicula"));
+        session.setAttribute("ValPel",v );
+        gotoPage("/admin/valoraciones2.jsp", request, response);
     }
 
    }

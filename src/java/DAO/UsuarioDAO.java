@@ -8,6 +8,9 @@ import classes.vo.Usuario;
 import java.sql.*;
 import classes.*;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -857,5 +860,92 @@ public busquedaUsuarioVO obtenerUsuarioPorCorreo(String correo){
   }
 
 
+    public ArrayList<String> obtenerValoraciones(String id){
+        
+        ArrayList<String> res = new ArrayList<String>();
+        try {
+            testDriver ();
+            con = obtenerConexion ("localhost", "tienda");
+            Statement declaracion= con.createStatement();
+            Statement declaracion2= con.createStatement();
+            
+            String query = "SELECT * FROM user_ratedmovies WHERE userID='"+id+"'";
+
+            ResultSet resultado=declaracion.executeQuery(query);
+
+            while(resultado.next()) {
+                String query2 = "SELECT spanishTitle FROM movies WHERE id='"+resultado.getString("movieID")+"'";
+                ResultSet resultado2 = declaracion2.executeQuery(query2);
+                while(resultado2.next()){
+                    res.add("Película: "+resultado2.getString("spanishTitle")+" --- Valoración: "+resultado.getString("rating"));
+                }            
+                
+                //res.add("Película: "+resultado.getString("movieID")+" --- Valoración: "+resultado.getString("rating"));
+            }
+ 
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+                try
+                    {
+                    con.close();
+                    }
+                catch (java.sql.SQLException e)
+                    {
+                    // Gestion de la excepcion...
+                    }
+
+        }
+                
+        
+        return res;
+        
+    }
+
+    public ArrayList<String> obtenerValoracionesPel(String id){
+        
+        ArrayList<String> res = new ArrayList<String>();
+        ArrayList<String> aux = new ArrayList<String>();
+        try {
+            testDriver ();
+            con = obtenerConexion ("localhost", "tienda");
+            Statement declaracion= con.createStatement();
+            Statement declaracion2= con.createStatement();
+            
+            String query = "SELECT * FROM user_ratedmovies WHERE movieID='"+id+"'";
+
+            ResultSet resultado=declaracion.executeQuery(query);
+
+            int ok;
+            while(resultado.next()) {  
+                ok = 0;
+                String query2 = "SELECT nombre FROM usuario WHERE idUsuario='"+resultado.getString("userID")+"'";
+                ResultSet resultado2 = declaracion2.executeQuery(query2);
+                while(resultado2.next()){
+                    ok = 1;
+                    aux.add("Usuario: "+resultado2.getString("nombre")+" --- Valoración: "+resultado.getString("rating"));
+                } 
+                if(ok == 0){
+                    aux.add("Usuario: (Usuario antiguo) --- Valoración: "+resultado.getString("rating"));
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+                try
+                    {
+                    con.close();
+                    }
+                catch (java.sql.SQLException e)
+                    {
+                    // Gestion de la excepcion...
+                    }
+
+        }
+                
+        
+        return aux;
+        
+    }
 
 }

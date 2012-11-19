@@ -24,6 +24,8 @@
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=AnhadirArticulo">Añadir CD</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=AnhadirPelicula">Añadir Pelicula</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorUsuario?accion=PerfilAdmin">Editar Perfil</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=VerValoracionesPelicula">Valoraciones por película</a></li>
+                <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=VerValoracionesUsuario">Valoraciones por usuario</a></li>
                 <li><a href="/ProyectoWI/classes/ControladorArticulo?accion=Algoritmos">Algoritmos</a></li>
 
                 </c:if>                

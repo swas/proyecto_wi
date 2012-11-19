@@ -39,7 +39,7 @@ public class Usuario {
 
     public Usuario(String correoElectronico, String pass, String nombre, String apellidos, String direccion, String dni, String numTarjeta, String telefono){
 
-            this.idUsuario="C"+telefono;
+            this.idUsuario="1"+telefono;
             this.correoElectronico=correoElectronico;
             this.pass=pass;
             this.nombre=nombre;
